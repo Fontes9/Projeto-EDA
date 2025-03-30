@@ -1,28 +1,31 @@
 /**
  * @file main.c
- * @brief Programa principal com output em ficheiro
- * @details Escreve resultados no ficheiro resultado.txt sem output no terminal
+ * @brief Programa principal
+ * @author Tiago Fontes
  */
 
  #include "funcoes.h"
  #include <stdio.h>
  
  int main() {
-     FILE *output = fopen("resultado.txt", "w");
-     if (!output) return 1;
- 
-     // 1. Carregar antenas
+     // 1. Carregar as antenas
      antena* antenas = CarregarAntenasDoFicheiro("antenas.txt");
      if (!antenas) {
-         fprintf(output, "Erro ao carregar antenas!\n");
-         fclose(output);
+         printf("Erro ao carregar antenas!\n");
          return 1;
      }
  
-     // 2. Calcular efeitos
+     // 2. Calcular os efeitos
      nefasto* efeitos = CalcularEfeitosNefastos(antenas);
      
-     // 3. Escrever resultados no ficheiro
+     // 3. Escrever os resultados
+     FILE *output = fopen("resultado.txt", "w");
+     if (!output) {
+         printf("Erro ao criar ficheiro de saída!\n");
+         LibertarAntenas(antenas);
+         return 1;
+     }
+ 
      fprintf(output, "=== ANTENAS ===\n");
      for (antena* a = antenas; a; a = a->prox) {
          fprintf(output, "Freq: %c @ (%d,%d)\n", a->frequencia, a->coluna, a->linha);
@@ -33,7 +36,7 @@
          fprintf(output, "Posição: (%d,%d)\n", e->coluna, e->linha);
      }
  
-     // 4. Libertar memória e fechar ficheiro
+     // 4. Libertar a memória
      LibertarAntenas(antenas);
      LibertarEfeitosNefastos(efeitos);
      fclose(output);

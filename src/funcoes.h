@@ -2,8 +2,7 @@
  * @file funcoes.h
  * @brief Cabeçalho para gestão de antenas e efeitos nefastos
  * @details Contém as estruturas de dados e protótipos das funções principais
- * @author [Seu Nome]
- * @version 1.0
+ * @author Tiago Fontes
  */
 
  #ifndef FUNCOES_H
@@ -19,16 +18,16 @@
      char frequencia;     ///< Frequência (ex: 'A', 'B', 'C')
      int coluna;         ///< Posição X (0 a MAX_COLUNAS-1)
      int linha;          ///< Posição Y (0 a MAX_LINHAS-1)
-     struct Antena *prox; ///< Ponteiro para próxima antena
+     struct Antena *prox; ///< Ponteiro para a próxima antena
  } antena;
  
  /**
   * @brief Estrutura para efeitos de interferência
   */
  typedef struct EfeitoNefasto {
-     int coluna;         ///< Coluna afetada
-     int linha;          ///< Linha afetada
-     struct EfeitoNefasto *prox; ///< Próximo efeito na lista
+     int coluna;                    ///< Coluna afetada
+     int linha;                     ///< Linha afetada
+     struct EfeitoNefasto *prox;    ///< Próximo efeito na lista
  } nefasto;
  
  // ------------------------------------

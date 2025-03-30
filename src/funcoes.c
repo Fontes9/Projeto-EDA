@@ -1,18 +1,13 @@
 /**
  * @file funcoes.c
- * @brief Implementação das funções para gestão de antenas
- * @author [Seu Nome]
- * @date 2023-06-15
+ * @brief Implementação das funções de gestão
+ * @author  Tiago Fontes
  */
 
  #include "funcoes.h"
  #include <stdio.h>
  #include <stdlib.h>
  #include <string.h>
- 
- // ------------------------------------
- // Funções principais
- // ------------------------------------
  
  antena* CriarAntena(int coluna, int linha, char freq) {
      antena* nova = (antena*)malloc(sizeof(antena));
@@ -28,33 +23,29 @@
  antena* CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
      FILE* fp = fopen(nome_ficheiro, "r");
      if(!fp) {
-         fprintf(stderr, "Erro: não foi possível abrir %s\n", nome_ficheiro);
+         fprintf(stderr, "Erro ao abrir %s\n", nome_ficheiro);
          return NULL;
      }
  
      int total_linhas, total_colunas;
      if(fscanf(fp, "%d %d", &total_linhas, &total_colunas) != 2) {
          fclose(fp);
-         fprintf(stderr, "Erro: formato inválido nas dimensões\n");
+         fprintf(stderr, "Formato inválido\n");
          return NULL;
      }
  
-     // Consome resto da linha
-     while(fgetc(fp) != '\n' && !feof(fp));
- 
      antena* lista = NULL;
      antena* ultima = NULL;
-     char linha[MAX_COLUNAS + 2]; // +2 para \n e \0
+     char linha[MAX_COLUNAS + 2];
      int y = 0;
  
      while(fgets(linha, sizeof(linha), fp) && y < total_linhas) {
          linha[strcspn(linha, "\n")] = '\0';
-         
          for(int x = 0; x < total_colunas && x < (int)strlen(linha); x++) {
              if(linha[x] != '.' && linha[x] != ' ') {
                  antena* ant = CriarAntena(x, y, linha[x]);
                  if(!ant) continue;
- 
+                 
                  if(!lista) lista = ant;
                  else ultima->prox = ant;
                  ultima = ant;
@@ -62,7 +53,6 @@
          }
          y++;
      }
- 
      fclose(fp);
      return lista;
  }
@@ -78,7 +68,7 @@
                  int diff_linha = comparar->linha - atual->linha;
                  int diff_coluna = comparar->coluna - atual->coluna;
  
-                 // Verifica efeito na direção comparar -> futuro
+                 // Direção comparar -> futuro
                  int nefasto_linha = comparar->linha + diff_linha;
                  int nefasto_coluna = comparar->coluna + diff_coluna;
  
@@ -93,7 +83,7 @@
                      }
                  }
  
-                 // Verifica efeito na direção atual -> passado
+                 // Direção atual -> passado
                  nefasto_linha = atual->linha - diff_linha;
                  nefasto_coluna = atual->coluna - diff_coluna;
  
@@ -112,13 +102,8 @@
          }
          atual = atual->prox;
      }
- 
      return nefastos;
  }
- 
- // ------------------------------------
- // Funções auxiliares
- // ------------------------------------
  
  void LibertarAntenas(antena* lista) {
      while(lista) {
