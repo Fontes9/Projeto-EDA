@@ -1,4 +1,4 @@
-Lista de Antenas (coluna,linha):
+=== ANTENAS ===
 Freq: A @ (0,0)
 Freq: A @ (7,0)
 Freq: B @ (8,1)
@@ -14,7 +14,7 @@ Freq: F @ (2,9)
 Freq: G @ (0,11)
 Freq: G @ (7,11)
 
-Efeitos Nefastos:
+=== INTERFERÊNCIAS ===
 Posição: (4,9)
 Posição: (11,7)
 Posição: (2,5)
