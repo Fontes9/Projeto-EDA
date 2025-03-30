@@ -1,0 +1,23 @@
+Lista de Antenas (coluna,linha):
+Freq: A @ (0,0)
+Freq: A @ (7,0)
+Freq: B @ (8,1)
+Freq: C @ (4,2)
+Freq: C @ (0,3)
+Freq: D @ (0,5)
+Freq: D @ (4,5)
+Freq: D @ (6,5)
+Freq: E @ (3,7)
+Freq: E @ (7,7)
+Freq: F @ (0,9)
+Freq: F @ (2,9)
+Freq: G @ (0,11)
+Freq: G @ (7,11)
+
+Efeitos Nefastos:
+Posição: (4,9)
+Posição: (11,7)
+Posição: (2,5)
+Posição: (8,5)
+Posição: (8,5)
+Posição: (8,1)
