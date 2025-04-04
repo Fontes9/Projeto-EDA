@@ -39,7 +39,7 @@
  */
  antena* CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
      FILE* fp = fopen(nome_ficheiro, "r");
-     if(!fp) {
+     if(fp == NULL) {
          fprintf(stderr, "Erro ao abrir %s\n", nome_ficheiro);
          return NULL;
      }
