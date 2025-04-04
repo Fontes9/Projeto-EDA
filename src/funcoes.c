@@ -29,10 +29,10 @@
  }
  
  /**
- * @brief Carrega uma lista de antenas a partir de um arquivo de texto
- * @param nome_ficheiro Caminho para o arquivo contendo os dados das antenas
+ * @brief Carrega uma lista de antenas a partir de um ficheiro de texto
+ * @param nome_ficheiro Caminho para o ficheiro contendo os dados das antenas
  * @return Lista encadeada de antenas ou NULL em caso de erro
- * @details O arquivo deve seguir o formato:
+ * @details O ficheiro deve seguir o formato:
  *          - Primeira linha: total_linhas total_colunas
  *          - Linhas subsequentes: representação do grid ('.' para vazio)
  * @warning A memória alocada deve ser liberada com LibertarAntenas()
