@@ -9,6 +9,14 @@
  #include <stdlib.h>
  #include <string.h>
  
+ /**
+ * @brief Cria e inicializa uma nova estrutura de antena
+ * @param coluna Posição horizontal no grid (coordenada x)
+ * @param linha Posição vertical no grid (coordenada y)
+ * @param freq Caractere representando a frequência da antena
+ * @return Ponteiro para a antena criada ou NULL em caso de falha
+ * @warning A memória alocada deve ser liberada com LibertarAntenas()
+ */
  antena* CriarAntena(int coluna, int linha, char freq) {
      antena* nova = (antena*)malloc(sizeof(antena));
      if(!nova) return NULL;
@@ -20,6 +28,15 @@
      return nova;
  }
  
+ /**
+ * @brief Carrega uma lista de antenas a partir de um arquivo de texto
+ * @param nome_ficheiro Caminho para o arquivo contendo os dados das antenas
+ * @return Lista encadeada de antenas ou NULL em caso de erro
+ * @details O arquivo deve seguir o formato:
+ *          - Primeira linha: total_linhas total_colunas
+ *          - Linhas subsequentes: representação do grid ('.' para vazio)
+ * @warning A memória alocada deve ser liberada com LibertarAntenas()
+ */
  antena* CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
      FILE* fp = fopen(nome_ficheiro, "r");
      if(!fp) {
@@ -57,6 +74,14 @@
      return lista;
  }
  
+ /**
+ * @brief Calcula pontos de interferência entre antenas de mesma frequência
+ * @param lista Lista encadeada de antenas a serem analisadas
+ * @return Lista de pontos com interferência ou NULL se nenhuma for encontrada
+ * @details Para cada par de antenas com mesma frequência, calcula os pontos
+ *          de interferência projetando o vetor entre elas em ambas as direções
+ * @warning A memória alocada deve ser liberada com LibertarEfeitosNefastos()
+ */
  nefasto* CalcularEfeitosNefastos(antena* lista) {
      nefasto* nefastos = NULL;
      antena* atual = lista;
@@ -105,6 +130,10 @@
      return nefastos;
  }
  
+ /**
+ * @brief Libera a memória alocada para uma lista de antenas
+ * @param lista Ponteiro para o início da lista de antenas
+ */
  void LibertarAntenas(antena* lista) {
      while(lista) {
          antena* temp = lista;
@@ -113,6 +142,10 @@
      }
  }
  
+ /**
+ * @brief Libera a memória alocada para uma lista de efeitos nefastos
+ * @param lista Ponteiro para o início da lista de efeitos nefastos
+ */
  void LibertarEfeitosNefastos(nefasto* lista) {
      while(lista) {
          nefasto* temp = lista;
