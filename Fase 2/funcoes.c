@@ -1,161 +1,143 @@
-/**
- * @file funcoes.c
- * @brief Implementação das funções de gestão de grafos e interferências
- * @author Tiago Fontes
- */
-
 #include "funcoes.h"
 
-Grafo InicializarGrafo() {
-    Grafo grafo;
-    grafo.num_vertices = 0;
-    
-    for (int i = 0; i < MAX_VERTICES; i++) {
-        for (int j = 0; j < MAX_VERTICES; j++) {
-            grafo.matriz_adj[i][j] = 0;
-        }
-    }
-    
-    return grafo;
+// Adiciona uma ligação entre duas antenas
+void AdicionarLigacao(Antena* antena, int id_destino) {
+    Ligacao* nova = (Ligacao*)malloc(sizeof(Ligacao));
+    nova->id_antena_destino = id_destino;
+    nova->proxima = antena->conexoes;
+    antena->conexoes = nova;
 }
 
-Grafo CarregarGrafoDoFicheiro(const char* nome_ficheiro) {
-    FILE* fp = fopen(nome_ficheiro, "r");
-    Grafo grafo = InicializarGrafo();
-    
-    if (fp == NULL) {
-        fprintf(stderr, "Erro ao abrir %s\n", nome_ficheiro);
+// Carrega o grafo a partir de um ficheiro
+Grafo CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
+    FILE* ficheiro = fopen(nome_ficheiro, "r");
+    Grafo grafo = { .total_antenas = 0 };
+
+    if (!ficheiro) {
+        perror("Erro ao abrir ficheiro");
         return grafo;
     }
 
-    int total_linhas, total_colunas;
-    if (fscanf(fp, "%d %d", &total_linhas, &total_colunas) != 2) {
-        fclose(fp);
-        fprintf(stderr, "Formato inválido\n");
+    int linhas, colunas;
+    if (fscanf(ficheiro, "%d %d", &linhas, &colunas) != 2) {
+        fclose(ficheiro);
+        fprintf(stderr, "Formato de ficheiro inválido\n");
         return grafo;
     }
 
     char linha[MAX_COLUNAS + 2];
-    int y = 0;
-
-    while (fgets(linha, sizeof(linha), fp) && y < total_linhas) {
-        linha[strcspn(linha, "\n")] = '\0';
-        for (int x = 0; x < total_colunas && x < (int)strlen(linha); x++) {
+    for (int y = 0; fgets(linha, sizeof(linha), ficheiro) && y < linhas; y++) {
+        linha[strcspn(linha, "\n")] = '\0'; // Remove a quebra de linha
+        for (int x = 0; x < colunas && x < (int)strlen(linha); x++) {
             if (linha[x] != '.' && linha[x] != ' ') {
-                AdicionarVertice(&grafo, linha[x], x, y);
+                grafo.antenas[grafo.total_antenas++] = (Antena){
+                    .frequencia = linha[x],
+                    .coluna = x,
+                    .linha = y,
+                    .conexoes = NULL,
+                    .visitada = false
+                };
             }
         }
-        y++;
     }
-    
-    fclose(fp);
-    ConectarVerticesMesmaFrequencia(&grafo);
+    fclose(ficheiro);
+
+    // Conectar antenas da mesma frequência
+    for (int i = 0; i < grafo.total_antenas; i++) {
+        for (int j = i + 1; j < grafo.total_antenas; j++) {
+            if (grafo.antenas[i].frequencia == grafo.antenas[j].frequencia) {
+                AdicionarLigacao(&grafo.antenas[i], j);
+                AdicionarLigacao(&grafo.antenas[j], i);
+            }
+        }
+    }
+
     return grafo;
 }
 
-bool AdicionarVertice(Grafo* grafo, char freq, int coluna, int linha) {
-    if (grafo->num_vertices >= MAX_VERTICES) {
-        return false;
+// Busca em Profundidade (DFS)
+void DFS(Grafo* grafo, int id, FILE* saida) {
+    grafo->antenas[id].visitada = true;
+    Antena a = grafo->antenas[id];
+    fprintf(saida, "Antena %c @ (%d,%d)\n", a.frequencia, a.coluna, a.linha);
+
+    for (Ligacao* lig = a.conexoes; lig; lig = lig->proxima) {
+        if (!grafo->antenas[lig->id_antena_destino].visitada) {
+            DFS(grafo, lig->id_antena_destino, saida);
+        }
     }
-    
-    Vertice novo;
-    novo.frequencia = freq;
-    novo.coluna = coluna;
-    novo.linha = linha;
-    novo.id = grafo->num_vertices;
-    
-    grafo->vertices[grafo->num_vertices] = novo;
-    grafo->num_vertices++;
-    
-    return true;
 }
 
-void ConectarVerticesMesmaFrequencia(Grafo* grafo) {
-    for (int i = 0; i < grafo->num_vertices; i++) {
-        for (int j = i + 1; j < grafo->num_vertices; j++) {
-            if (grafo->vertices[i].frequencia == grafo->vertices[j].frequencia) {
-                grafo->matriz_adj[i][j] = 1;
-                grafo->matriz_adj[j][i] = 1;
+// Busca em Largura (BFS)
+void BFS(Grafo* grafo, int inicio, FILE* saida) {
+    int fila[MAX_ANTENAS];
+    int frente = 0, tras = 0;
+    
+    grafo->antenas[inicio].visitada = true;
+    fila[tras++] = inicio;
+
+    while (frente < tras) {
+        int atual = fila[frente++];
+        Antena a = grafo->antenas[atual];
+        fprintf(saida, "Antena %c @ (%d,%d)\n", a.frequencia, a.coluna, a.linha);
+
+        for (Ligacao* lig = a.conexoes; lig; lig = lig->proxima) {
+            if (!grafo->antenas[lig->id_antena_destino].visitada) {
+                grafo->antenas[lig->id_antena_destino].visitada = true;
+                fila[tras++] = lig->id_antena_destino;
             }
         }
     }
 }
 
-void BuscaProfundidade(Grafo grafo, int id_origem, bool visitados[]) {
-    visitados[id_origem] = true;
-    printf("Antena %c @ (%d,%d)\n", 
-           grafo.vertices[id_origem].frequencia,
-           grafo.vertices[id_origem].coluna,
-           grafo.vertices[id_origem].linha);
-    
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        if (grafo.matriz_adj[id_origem][i] && !visitados[i]) {
-            BuscaProfundidade(grafo, i, visitados);
-        }
+// Limpa os estados de visita (para reutilização)
+void LimparVisitados(Grafo* grafo) {
+    for (int i = 0; i < grafo->total_antenas; i++) {
+        grafo->antenas[i].visitada = false;
     }
 }
 
-void BuscaLargura(Grafo grafo, int id_origem) {
-    bool visitados[MAX_VERTICES] = {false};
-    int fila[MAX_VERTICES];
-    int inicio = 0, fim = 0;
-    
-    fila[fim++] = id_origem;
-    visitados[id_origem] = true;
-    
-    while (inicio < fim) {
-        int atual = fila[inicio++];
-        printf("Antena %c @ (%d,%d)\n", 
-               grafo.vertices[atual].frequencia,
-               grafo.vertices[atual].coluna,
-               grafo.vertices[atual].linha);
-        
-        for (int i = 0; i < grafo.num_vertices; i++) {
-            if (grafo.matriz_adj[atual][i] && !visitados[i]) {
-                fila[fim++] = i;
-                visitados[i] = true;
-            }
-        }
-    }
-}
-
-void EncontrarTodosCaminhos(Grafo grafo, int origem, int destino, int caminho[], bool visitados[], int pos) {
-    caminho[pos] = origem;
-    visitados[origem] = true;
+// Encontra todos os caminhos entre duas antenas
+void EncontrarCaminhosRec(Grafo* grafo, int atual, int destino, bool visitados[], int caminho[], int pos, FILE* saida) {
+    visitados[atual] = true;
+    caminho[pos] = atual;
     pos++;
-    
-    if (origem == destino) {
-        printf("Caminho encontrado: ");
+
+    if (atual == destino) {
         for (int i = 0; i < pos; i++) {
-            Vertice v = grafo.vertices[caminho[i]];
-            printf("%c(%d,%d)", v.frequencia, v.coluna, v.linha);
-            if (i < pos - 1) printf(" -> ");
+            Antena a = grafo->antenas[caminho[i]];
+            fprintf(saida, "%c(%d,%d)", a.frequencia, a.coluna, a.linha);
+            if (i < pos - 1) fprintf(saida, " -> ");
         }
-        printf("\n");
+        fprintf(saida, "\n");
     } else {
-        for (int i = 0; i < grafo.num_vertices; i++) {
-            if (grafo.matriz_adj[origem][i] && !visitados[i]) {
-                EncontrarTodosCaminhos(grafo, i, destino, caminho, visitados, pos);
+        for (Ligacao* lig = grafo->antenas[atual].conexoes; lig; lig = lig->proxima) {
+            if (!visitados[lig->id_antena_destino]) {
+                EncontrarCaminhosRec(grafo, lig->id_antena_destino, destino, visitados, caminho, pos, saida);
             }
         }
     }
-    
-    visitados[origem] = false;
-    pos--;
+
+    visitados[atual] = false;
 }
 
-void ListarIntersecoes(Grafo grafo, char freqA, char freqB) {
-    printf("Intersecoes entre antenas %c e %c:\n", freqA, freqB);
-    
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        if (grafo.vertices[i].frequencia == freqA) {
-            for (int j = 0; j < grafo.num_vertices; j++) {
-                if (grafo.vertices[j].frequencia == freqB) {
-                    if (grafo.vertices[i].linha == grafo.vertices[j].linha || 
-                        grafo.vertices[i].coluna == grafo.vertices[j].coluna) {
-                        printf("Antena %c(%d,%d) e Antena %c(%d,%d)\n",
-                               freqA, grafo.vertices[i].coluna, grafo.vertices[i].linha,
-                               freqB, grafo.vertices[j].coluna, grafo.vertices[j].linha);
+void EncontrarTodosCaminhos(Grafo* grafo, int origem, int destino, FILE* saida) {
+    bool visitados[MAX_ANTENAS] = {false};
+    int caminho[MAX_ANTENAS];
+    EncontrarCaminhosRec(grafo, origem, destino, visitados, caminho, 0, saida);
+}
+
+// Lista interseções entre antenas de frequências diferentes
+void ListarIntersecoes(Grafo* grafo, char freqA, char freqB, FILE* saida) {
+    for (int i = 0; i < grafo->total_antenas; i++) {
+        if (grafo->antenas[i].frequencia == freqA) {
+            for (int j = 0; j < grafo->total_antenas; j++) {
+                if (grafo->antenas[j].frequencia == freqB) {
+                    if (grafo->antenas[i].linha == grafo->antenas[j].linha || 
+                        grafo->antenas[i].coluna == grafo->antenas[j].coluna) {
+                        fprintf(saida, "%c(%d,%d) - %c(%d,%d)\n",
+                               freqA, grafo->antenas[i].coluna, grafo->antenas[i].linha,
+                               freqB, grafo->antenas[j].coluna, grafo->antenas[j].linha);
                     }
                 }
             }
@@ -163,102 +145,96 @@ void ListarIntersecoes(Grafo grafo, char freqA, char freqB) {
     }
 }
 
-void ImprimirGrafo(Grafo grafo) {
-    printf("Grafo com %d vertices:\n", grafo.num_vertices);
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        Vertice v = grafo.vertices[i];
-        printf("V%d: %c @ (%d,%d) -> ", v.id, v.frequencia, v.coluna, v.linha);
-        
-        bool primeiro = true;
-        for (int j = 0; j < grafo.num_vertices; j++) {
-            if (grafo.matriz_adj[i][j]) {
-                if (!primeiro) printf(", ");
-                printf("V%d", j);
-                primeiro = false;
-            }
-        }
-        printf("\n");
-    }
-}
-
-int EncontrarIndiceVertice(Grafo grafo, int coluna, int linha) {
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        if (grafo.vertices[i].coluna == coluna && grafo.vertices[i].linha == linha) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-void ImprimirMatrizAdjacencia(Grafo grafo) {
-    printf("Matriz de Adjacencia:\n   ");
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        printf("V%d ", i);
-    }
-    printf("\n");
-    
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        printf("V%d ", i);
-        for (int j = 0; j < grafo.num_vertices; j++) {
-            printf(" %d ", grafo.matriz_adj[i][j]);
-        }
-        printf("\n");
-    }
-}
-
-nefasto* CalcularEfeitosNefastosGrafo(Grafo grafo) {
-    nefasto* nefastos = NULL;
-    
-    for (int i = 0; i < grafo.num_vertices; i++) {
-        for (int j = i + 1; j < grafo.num_vertices; j++) {
-            if (grafo.matriz_adj[i][j]) {
-                Vertice v1 = grafo.vertices[i];
-                Vertice v2 = grafo.vertices[j];
+// Calcula os efeitos nefastos (pontos de interferência)
+void CalcularEfeitosNefastos(Grafo* grafo, FILE* saida) {
+    for (int i = 0; i < grafo->total_antenas; i++) {
+        for (Ligacao* lig = grafo->antenas[i].conexoes; lig; lig = lig->proxima) {
+            int j = lig->id_antena_destino;
+            if (i < j) { // Evitar duplicatas
+                int dx = grafo->antenas[j].coluna - grafo->antenas[i].coluna;
+                int dy = grafo->antenas[j].linha - grafo->antenas[i].linha;
                 
-                int diff_linha = v2.linha - v1.linha;
-                int diff_coluna = v2.coluna - v1.coluna;
-                
-                // Direção v2 -> futuro
-                int nefasto_linha = v2.linha + diff_linha;
-                int nefasto_coluna = v2.coluna + diff_coluna;
-                
-                if (nefasto_linha >= 0 && nefasto_coluna >= 0 &&
-                    nefasto_linha < MAX_LINHAS && nefasto_coluna < MAX_COLUNAS) {
-                    nefasto* novo = (nefasto*)malloc(sizeof(nefasto));
-                    if (novo) {
-                        novo->coluna = nefasto_coluna;
-                        novo->linha = nefasto_linha;
-                        novo->frequencia = v1.frequencia;
-                        novo->prox = nefastos;
-                        nefastos = novo;
-                    }
+                // Direção j
+                int x = grafo->antenas[j].coluna + dx;
+                int y = grafo->antenas[j].linha + dy;
+                if (x >= 0 && y >= 0 && x < MAX_COLUNAS && y < MAX_LINHAS) {
+                    fprintf(saida, "(%d,%d) - Frequencia: %c\n", x, y, grafo->antenas[i].frequencia);
                 }
-                
-                // Direção v1 -> passado
-                nefasto_linha = v1.linha - diff_linha;
-                nefasto_coluna = v1.coluna - diff_coluna;
-                
-                if (nefasto_linha >= 0 && nefasto_coluna >= 0 &&
-                    nefasto_linha < MAX_LINHAS && nefasto_coluna < MAX_COLUNAS) {
-                    nefasto* novo = (nefasto*)malloc(sizeof(nefasto));
-                    if (novo) {
-                        novo->coluna = nefasto_coluna;
-                        novo->linha = nefasto_linha;
-                        novo->frequencia = v1.frequencia;
-                        novo->prox = nefastos;
-                        nefastos = novo;
-                    }
+
+                // Direção i
+                x = grafo->antenas[i].coluna - dx;
+                y = grafo->antenas[i].linha - dy;
+                if (x >= 0 && y >= 0 && x < MAX_COLUNAS && y < MAX_LINHAS) {
+                    fprintf(saida, "(%d,%d) - Frequencia: %c\n", x, y, grafo->antenas[i].frequencia);
                 }
             }
         }
     }
-    return nefastos;
 }
 
-void LibertarEfeitosNefastos(nefasto* lista) {
-    while (lista) {
-        nefasto* temp = lista;
-        lista = lista->prox;
-        free(temp);
+// Exporta todos os resultados para um ficheiro
+void ExportarResultados(Grafo grafo, const char* nome_ficheiro) {
+    FILE* saida = fopen(nome_ficheiro, "w");
+    if (!saida) {
+        perror("Erro ao criar ficheiro");
+        return;
+    }
+
+    fprintf(saida, "=== ANTENAS ===\n");
+    for (int i = 0; i < grafo.total_antenas; i++) {
+        fprintf(saida, "ID %d: %c @ (%d,%d)\n", i, 
+               grafo.antenas[i].frequencia,
+               grafo.antenas[i].coluna,
+               grafo.antenas[i].linha);
+    }
+
+    fprintf(saida, "\n=== BUSCA EM PROFUNDIDADE (ID 0) ===\n");
+    DFS(&grafo, 0, saida);
+    LimparVisitados(&grafo);
+
+    fprintf(saida, "\n=== BUSCA EM LARGURA (ID 0) ===\n");
+    BFS(&grafo, 0, saida);
+    LimparVisitados(&grafo);
+
+    if (grafo.total_antenas > 2) {
+        fprintf(saida, "\n=== CAMINHOS ENTRE ID 0 E ID 2 ===\n");
+        EncontrarTodosCaminhos(&grafo, 0, 2, saida);
+    } else {
+        fprintf(saida, "\n=== NÃO HÁ ANTENAS SUFICIENTES PARA MOSTRAR CAMINHOS ===\n");
+    }
+
+    fprintf(saida, "\n=== INTERSECOES ENTRE FREQUENCIAS ===\n");
+    bool encontrou_intersecoes = false;
+    for (int i = 0; i < grafo.total_antenas; i++) {
+        for (int j = i + 1; j < grafo.total_antenas; j++) {
+            if (grafo.antenas[i].frequencia != grafo.antenas[j].frequencia) {
+                fprintf(saida, "\nIntersecoes entre %c e %c:\n", 
+                       grafo.antenas[i].frequencia, 
+                       grafo.antenas[j].frequencia);
+                ListarIntersecoes(&grafo, grafo.antenas[i].frequencia, 
+                                grafo.antenas[j].frequencia, saida);
+                encontrou_intersecoes = true;
+            }
+        }
+    }
+    if (!encontrou_intersecoes) {
+        fprintf(saida, "Nenhuma interseção encontrada entre frequências diferentes.\n");
+    }
+
+    fprintf(saida, "\n=== EFEITOS NEFASTOS ===\n");
+    CalcularEfeitosNefastos(&grafo, saida);
+    
+    fclose(saida);
+}
+
+// Liberta a memória do grafo
+void LibertarGrafo(Grafo* grafo) {
+    for (int i = 0; i < grafo->total_antenas; i++) {
+        Ligacao* atual = grafo->antenas[i].conexoes;
+        while (atual) {
+            Ligacao* temp = atual;
+            atual = atual->proxima;
+            free(temp);
+        }
     }
 }
