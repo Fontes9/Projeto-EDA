@@ -1,74 +1,48 @@
-=== ANTENAS ===
-ID 0: 
- @ (0,0)
-ID 1: A @ (0,1)
-ID 2: B @ (2,1)
-ID 3: B @ (1,2)
-ID 4: A @ (0,3)
-ID 5: B @ (3,3)
+=== ANTENAS (6) ===
+0: A @ (0,0)
+1: B @ (3,1)
+2: A @ (6,2)
+3: B @ (2,3)
+4: B @ (6,4)
+5: A @ (3,5)
 
-=== BUSCA EM PROFUNDIDADE (ID 0) ===
-Antena 
- @ (0,0)
+=== BUSCA EM PROFUNDIDADE (a partir da antena 0) ===
+Antena A @ (0,0)
+Antena A @ (3,5)
+Antena A @ (6,2)
 
-=== BUSCA EM LARGURA (ID 0) ===
-Antena 
- @ (0,0)
+=== BUSCA EM LARGURA (a partir da antena 0) ===
+Antena A @ (0,0)
+Antena A @ (3,5)
+Antena A @ (6,2)
 
-=== CAMINHOS ENTRE ID 0 E ID 2 ===
+=== CAMINHOS ENTRE ANTENAS 0 e 2 ===
+A(0,0) -> A(3,5) -> A(6,2)
+A(0,0) -> A(6,2)
 
 === INTERSECOES ENTRE FREQUENCIAS ===
+A(6,2) - B(6,4)
+A(3,5) - B(3,1)
+A(6,2) - B(6,4)
+A(3,5) - B(3,1)
+A(6,2) - B(6,4)
+A(3,5) - B(3,1)
+B(3,1) - A(3,5)
+B(6,4) - A(6,2)
+B(3,1) - A(3,5)
+B(6,4) - A(6,2)
+A(6,2) - B(6,4)
+A(3,5) - B(3,1)
+A(6,2) - B(6,4)
+A(3,5) - B(3,1)
+B(3,1) - A(3,5)
+B(6,4) - A(6,2)
+B(3,1) - A(3,5)
+B(6,4) - A(6,2)
 
-Intersecoes entre 
- e A:
-
-(0,0) - A(0,1)
-
-(0,0) - A(0,3)
-
-Intersecoes entre 
- e B:
-
-Intersecoes entre 
- e B:
-
-Intersecoes entre 
- e A:
-
-(0,0) - A(0,1)
-
-(0,0) - A(0,3)
-
-Intersecoes entre 
- e B:
-
-Intersecoes entre A e B:
-A(0,1) - B(2,1)
-A(0,3) - B(3,3)
-
-Intersecoes entre A e B:
-A(0,1) - B(2,1)
-A(0,3) - B(3,3)
-
-Intersecoes entre A e B:
-A(0,1) - B(2,1)
-A(0,3) - B(3,3)
-
-Intersecoes entre B e A:
-B(2,1) - A(0,1)
-B(3,3) - A(0,3)
-
-Intersecoes entre B e A:
-B(2,1) - A(0,1)
-B(3,3) - A(0,3)
-
-Intersecoes entre A e B:
-A(0,1) - B(2,1)
-A(0,3) - B(3,3)
-
-=== EFEITOS NEFASTOS ===
-(0,5) - Frequencia: A
-(4,5) - Frequencia: B
-(0,3) - Frequencia: B
-(3,0) - Frequencia: B
-(5,4) - Frequencia: B
+=== INTERFERENCIAS ===
+=== PONTOS DE INTERFERENCIA ===
+(4,2) - Entre B(3,1) e B(6,4)
+(5,3) - Entre B(3,1) e B(6,4)
+(5,3) - Entre A(6,2) e A(3,5)
+(4,4) - Entre A(6,2) e A(3,5)
