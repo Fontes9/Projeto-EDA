@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projeto de Estrutura de Dados Avançados: Referência ao ficheiro src/funcoes.h</title>
+<title>Projeto de Estrutura de Dados Avançados Fase 1: Referência ao ficheiro src/funcoes.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Projeto de Estrutura de Dados Avançados
+   <div id="projectname">Projeto de Estrutura de Dados Avançados Fase 1
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -168,8 +168,9 @@ Funções</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
 <div class="textblock"><p>Cabeçalho para gestão de antenas e efeitos nefastos. </p>
-<p>Contém as estruturas de dados e protótipos das funções principais </p><dl class="section author"><dt>Autor</dt><dd>[Seu Nome] </dd></dl>
-<dl class="section version"><dt>Versão</dt><dd>1.0 </dd></dl>
+<p>Contém as estruturas de dados e protótipos das funções principais </p><dl class="section author"><dt>Autor</dt><dd>Tiago Fontes </dd></dl>
+
+<p class="definition">Definido no ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 </div><h2 class="groupheader">Documentação das macros</h2>
 <a id="ad624bf76d9366faecf9041ef6ffffcb9" name="ad624bf76d9366faecf9041ef6ffffcb9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad624bf76d9366faecf9041ef6ffffcb9">&#9670;&#160;</a></span>MAX_COLUNAS</h2>
@@ -184,6 +185,8 @@ Funções</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Número máximo de colunas na grelha. </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00012">12</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>
@@ -200,6 +203,8 @@ Funções</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Número máximo de linhas na grelha. </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00011">11</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>
@@ -259,7 +264,18 @@ Funções</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>Lista de efeitos nefastos ou NULL se nenhum encontrado </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>Lista de efeitos nefastos ou NULL se nenhum encontrado</dd></dl>
+<p>Calcula posições com interferência.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lista</td><td>Lista encadeada de antenas a serem analisadas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Lista de pontos com interferência ou NULL se nenhuma for encontrada</dd></dl>
+<p>Para cada par de antenas com mesma frequência, calcula os pontos de interferência projetando o vetor entre elas em ambas as direções </p><dl class="section warning"><dt>Aviso</dt><dd>A memória alocada deve ser liberada com <a class="el" href="#af625e4612e8b1ecbfdec34f462d4ca8f" title="Liberta memória dos efeitos nefastos.">LibertarEfeitosNefastos()</a> </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00085">85</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -288,9 +304,24 @@ Funções</h2></td></tr>
 <dl class="section return"><dt>Retorna</dt><dd>Lista ligada de antenas ou NULL se erro </dd></dl>
 <dl class="section note"><dt>Nota</dt><dd>Formato esperado:<ul>
 <li>1ª linha: "total_linhas total_colunas"</li>
-<li>Linhas seguintes: grelha com antenas (ex: "A..B\n.C.D") </li>
+<li>Linhas seguintes: grelha com antenas (ex: "A..B\n.C.D")</li>
 </ul>
 </dd></dl>
+<p>Carrega antenas de um ficheiro de texto.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome_ficheiro</td><td>Caminho para o ficheiro contendo os dados das antenas </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Lista encadeada de antenas ou NULL em caso de erro</dd></dl>
+<p>O ficheiro deve seguir o formato:</p><ul>
+<li>Primeira linha: total_linhas total_colunas</li>
+<li>Linhas subsequentes: representação do grid ('.' para vazio) <dl class="section warning"><dt>Aviso</dt><dd>A memória alocada deve ser liberada com <a class="el" href="#a22805b8322c72842eb510904d062d88a" title="Liberta memória de todas as antenas.">LibertarAntenas()</a> </dd></dl>
+</li>
+</ul>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00040">40</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -327,7 +358,20 @@ Funções</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>Ponteiro para antena criada ou NULL se erro </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>Ponteiro para antena criada ou NULL se erro</dd></dl>
+<p>Cria uma nova antena.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">coluna</td><td>Posição horizontal no grid (coordenada x) </td></tr>
+    <tr><td class="paramname">linha</td><td>Posição vertical no grid (coordenada y) </td></tr>
+    <tr><td class="paramname">freq</td><td>Caractere representando a frequência da antena </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>Ponteiro para a antena criada ou NULL em caso de falha </dd></dl>
+<dl class="section warning"><dt>Aviso</dt><dd>A memória alocada deve ser liberada com <a class="el" href="#a22805b8322c72842eb510904d062d88a" title="Liberta memória de todas as antenas.">LibertarAntenas()</a> </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00020">20</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -349,10 +393,19 @@ Funções</h2></td></tr>
 <p>Liberta memória de todas as antenas. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lista</td><td>Lista a ser libertada </td></tr>
+    <tr><td class="paramname">lista</td><td>Lista a ser libertada</td></tr>
   </table>
   </dd>
 </dl>
+<p>Liberta memória de todas as antenas.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lista</td><td>Ponteiro para o início da lista de antenas </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00137">137</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -374,10 +427,19 @@ Funções</h2></td></tr>
 <p>Liberta memória dos efeitos nefastos. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lista</td><td>Lista a ser libertada </td></tr>
+    <tr><td class="paramname">lista</td><td>Lista a ser libertada</td></tr>
   </table>
   </dd>
 </dl>
+<p>Liberta memória dos efeitos nefastos.</p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lista</td><td>Ponteiro para o início da lista de efeitos nefastos </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00149">149</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>

@@ -1,0 +1,25 @@
+digraph "ExportarResultados"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  rankdir="LR";
+  Node1 [id="Node000001",label="ExportarResultados",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Exporta todos os resultados para um ficheiro."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="CalcularInterferencias",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a206d3e4c6b6befe5f9dff5babad472d6",tooltip="Calcula pontos de interferência entre antenas da mesma frequência."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="EncontrarCaminhos",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#ad8db3d8843f0e58bbd54604e757efea1",tooltip="Encontra todos os caminhos entre duas antenas."];
+  Node3 -> Node4 [id="edge3_Node000003_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node4 [id="Node000004",label="EncontrarCaminhosRec",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a434c2fa83b6b0963a956dbf5a5976862",tooltip="Função auxiliar recursiva para encontrar caminhos."];
+  Node4 -> Node4 [id="edge4_Node000004_Node000004",color="steelblue1",style="solid",tooltip=" "];
+  Node1 -> Node5 [id="edge5_Node000001_Node000005",color="steelblue1",style="solid",tooltip=" "];
+  Node5 [id="Node000005",label="LimparVisitados",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a5f4ca7899307299d713da05e73505b69",tooltip="Limpa os flags de visitadas de todas as antenas."];
+  Node1 -> Node6 [id="edge6_Node000001_Node000006",color="steelblue1",style="solid",tooltip=" "];
+  Node6 [id="Node000006",label="MostrarIntersecoes",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a86286bb4f2de0e99bbd66dc24d04a139",tooltip="Mostra interseções entre antenas de frequências diferentes."];
+  Node1 -> Node7 [id="edge7_Node000001_Node000007",color="steelblue1",style="solid",tooltip=" "];
+  Node7 [id="Node000007",label="ProcuraEmLargura",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a0bbefff0ab57b1b4eb06263198b326a8",tooltip="Realiza uma busca em largura a partir de uma antena."];
+  Node1 -> Node8 [id="edge8_Node000001_Node000008",color="steelblue1",style="solid",tooltip=" "];
+  Node8 [id="Node000008",label="ProcuraEmProfundidade",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a552f9c38cd5de75641d8c9611ba0bff4",tooltip="Realiza uma busca em profundidade a partir de uma antena."];
+  Node8 -> Node8 [id="edge9_Node000008_Node000008",color="steelblue1",style="solid",tooltip=" "];
+}

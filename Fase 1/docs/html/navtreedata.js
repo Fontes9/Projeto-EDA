@@ -24,7 +24,7 @@
 */
 var NAVTREE =
 [
-  [ "Projeto de Estrutura de Dados Avançados", "index.html", [
+  [ "Projeto de Estrutura de Dados Avançados Fase 1", "index.html", [
     [ "Classes", "annotated.html", [
       [ "Lista de componentes", "annotated.html", "annotated_dup" ],
       [ "Índice dos componentes", "classes.html", null ],

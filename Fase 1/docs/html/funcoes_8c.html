@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Projeto de Estrutura de Dados Avançados: Referência ao ficheiro src/funcoes.c</title>
+<title>Projeto de Estrutura de Dados Avançados Fase 1: Referência ao ficheiro src/funcoes.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,7 +32,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Projeto de Estrutura de Dados Avançados
+   <div id="projectname">Projeto de Estrutura de Dados Avançados Fase 1
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -108,7 +108,7 @@ $(function(){initNavTree('funcoes_8c.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>Implementação das funções para gestão de antenas.  
+<p>Implementação das funções de gestão.  
 <a href="#details">Mais...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="funcoes_8h_source.html">funcoes.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
@@ -119,29 +119,32 @@ Diagrama de dependências de inclusão para funcoes.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="funcoes_8c__incl.png" border="0" usemap="#asrc_2funcoes_8c" alt=""/></div>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="funcoes_8c_source.html">Ir para o código fonte deste ficheiro.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funções</h2></td></tr>
 <tr class="memitem:a21567d666d0bb7f67897d6857dad543f" id="r_a21567d666d0bb7f67897d6857dad543f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="funcoes_8h.html#a773c46d1246dfa819ef9397193d8c007">antena</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21567d666d0bb7f67897d6857dad543f">CriarAntena</a> (int coluna, int linha, char freq)</td></tr>
-<tr class="memdesc:a21567d666d0bb7f67897d6857dad543f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria uma nova antena.  <br /></td></tr>
+<tr class="memdesc:a21567d666d0bb7f67897d6857dad543f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cria e inicializa uma nova estrutura de antena.  <br /></td></tr>
 <tr class="separator:a21567d666d0bb7f67897d6857dad543f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa12397df290bbca0640de6f5e705b9c3" id="r_aa12397df290bbca0640de6f5e705b9c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="funcoes_8h.html#a773c46d1246dfa819ef9397193d8c007">antena</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa12397df290bbca0640de6f5e705b9c3">CarregarAntenasDoFicheiro</a> (const char *nome_ficheiro)</td></tr>
-<tr class="memdesc:aa12397df290bbca0640de6f5e705b9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega antenas de um ficheiro de texto.  <br /></td></tr>
+<tr class="memdesc:aa12397df290bbca0640de6f5e705b9c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega uma lista de antenas a partir de um ficheiro de texto.  <br /></td></tr>
 <tr class="separator:aa12397df290bbca0640de6f5e705b9c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a334c43e505656a1e65add751cf9c2316" id="r_a334c43e505656a1e65add751cf9c2316"><td class="memItemLeft" align="right" valign="top"><a class="el" href="funcoes_8h.html#a73a1198572f7cee4519da2bd563e3b48">nefasto</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a334c43e505656a1e65add751cf9c2316">CalcularEfeitosNefastos</a> (<a class="el" href="funcoes_8h.html#a773c46d1246dfa819ef9397193d8c007">antena</a> *lista)</td></tr>
-<tr class="memdesc:a334c43e505656a1e65add751cf9c2316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula posições com interferência.  <br /></td></tr>
+<tr class="memdesc:a334c43e505656a1e65add751cf9c2316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula pontos de interferência entre antenas de mesma frequência.  <br /></td></tr>
 <tr class="separator:a334c43e505656a1e65add751cf9c2316"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22805b8322c72842eb510904d062d88a" id="r_a22805b8322c72842eb510904d062d88a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22805b8322c72842eb510904d062d88a">LibertarAntenas</a> (<a class="el" href="funcoes_8h.html#a773c46d1246dfa819ef9397193d8c007">antena</a> *lista)</td></tr>
-<tr class="memdesc:a22805b8322c72842eb510904d062d88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liberta memória de todas as antenas.  <br /></td></tr>
+<tr class="memdesc:a22805b8322c72842eb510904d062d88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera a memória alocada para uma lista de antenas.  <br /></td></tr>
 <tr class="separator:a22805b8322c72842eb510904d062d88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af625e4612e8b1ecbfdec34f462d4ca8f" id="r_af625e4612e8b1ecbfdec34f462d4ca8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af625e4612e8b1ecbfdec34f462d4ca8f">LibertarEfeitosNefastos</a> (<a class="el" href="funcoes_8h.html#a73a1198572f7cee4519da2bd563e3b48">nefasto</a> *lista)</td></tr>
-<tr class="memdesc:af625e4612e8b1ecbfdec34f462d4ca8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liberta memória dos efeitos nefastos.  <br /></td></tr>
+<tr class="memdesc:af625e4612e8b1ecbfdec34f462d4ca8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera a memória alocada para uma lista de efeitos nefastos.  <br /></td></tr>
 <tr class="separator:af625e4612e8b1ecbfdec34f462d4ca8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
-<div class="textblock"><p>Implementação das funções para gestão de antenas. </p>
-<dl class="section author"><dt>Autor</dt><dd>[Seu Nome] </dd></dl>
-<dl class="section date"><dt>Data</dt><dd>2023-06-15 </dd></dl>
+<div class="textblock"><p>Implementação das funções de gestão. </p>
+<dl class="section author"><dt>Autor</dt><dd>Tiago Fontes </dd></dl>
+
+<p class="definition">Definido no ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 </div><h2 class="groupheader">Documentação das funções</h2>
 <a id="a334c43e505656a1e65add751cf9c2316" name="a334c43e505656a1e65add751cf9c2316"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a334c43e505656a1e65add751cf9c2316">&#9670;&#160;</a></span>CalcularEfeitosNefastos()</h2>
@@ -158,14 +161,18 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calcula posições com interferência. </p>
+<p>Calcula pontos de interferência entre antenas de mesma frequência. </p>
+<p>Calcula posições com interferência.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lista</td><td>Lista de antenas a analisar </td></tr>
+    <tr><td class="paramname">lista</td><td>Lista encadeada de antenas a serem analisadas </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>Lista de efeitos nefastos ou NULL se nenhum encontrado </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>Lista de pontos com interferência ou NULL se nenhuma for encontrada</dd></dl>
+<p>Para cada par de antenas com mesma frequência, calcula os pontos de interferência projetando o vetor entre elas em ambas as direções </p><dl class="section warning"><dt>Aviso</dt><dd>A memória alocada deve ser liberada com <a class="el" href="funcoes_8h.html#af625e4612e8b1ecbfdec34f462d4ca8f" title="Liberta memória dos efeitos nefastos.">LibertarEfeitosNefastos()</a> </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00085">85</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -184,19 +191,22 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Carrega antenas de um ficheiro de texto. </p>
+<p>Carrega uma lista de antenas a partir de um ficheiro de texto. </p>
+<p>Carrega antenas de um ficheiro de texto.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome_ficheiro</td><td>Caminho para o ficheiro </td></tr>
+    <tr><td class="paramname">nome_ficheiro</td><td>Caminho para o ficheiro contendo os dados das antenas </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>Lista ligada de antenas ou NULL se erro </dd></dl>
-<dl class="section note"><dt>Nota</dt><dd>Formato esperado:<ul>
-<li>1ª linha: "total_linhas total_colunas"</li>
-<li>Linhas seguintes: grelha com antenas (ex: "A..B\n.C.D") </li>
+<dl class="section return"><dt>Retorna</dt><dd>Lista encadeada de antenas ou NULL em caso de erro</dd></dl>
+<p>O ficheiro deve seguir o formato:</p><ul>
+<li>Primeira linha: total_linhas total_colunas</li>
+<li>Linhas subsequentes: representação do grid ('.' para vazio) <dl class="section warning"><dt>Aviso</dt><dd>A memória alocada deve ser liberada com <a class="el" href="funcoes_8h.html#a22805b8322c72842eb510904d062d88a" title="Liberta memória de todas as antenas.">LibertarAntenas()</a> </dd></dl>
+</li>
 </ul>
-</dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00040">40</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -224,16 +234,20 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Cria uma nova antena. </p>
+<p>Cria e inicializa uma nova estrutura de antena. </p>
+<p>Cria uma nova antena.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">coluna</td><td>Posição horizontal (começa em 0) </td></tr>
-    <tr><td class="paramname">linha</td><td>Posição vertical (começa em 0) </td></tr>
-    <tr><td class="paramname">freq</td><td>Frequência (carácter único) </td></tr>
+    <tr><td class="paramname">coluna</td><td>Posição horizontal no grid (coordenada x) </td></tr>
+    <tr><td class="paramname">linha</td><td>Posição vertical no grid (coordenada y) </td></tr>
+    <tr><td class="paramname">freq</td><td>Caractere representando a frequência da antena </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>Ponteiro para antena criada ou NULL se erro </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>Ponteiro para a antena criada ou NULL em caso de falha </dd></dl>
+<dl class="section warning"><dt>Aviso</dt><dd>A memória alocada deve ser liberada com <a class="el" href="funcoes_8h.html#a22805b8322c72842eb510904d062d88a" title="Liberta memória de todas as antenas.">LibertarAntenas()</a> </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00020">20</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -252,13 +266,16 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Liberta memória de todas as antenas. </p>
+<p>Libera a memória alocada para uma lista de antenas. </p>
+<p>Liberta memória de todas as antenas.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lista</td><td>Lista a ser libertada </td></tr>
+    <tr><td class="paramname">lista</td><td>Ponteiro para o início da lista de antenas </td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00137">137</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
@@ -277,13 +294,16 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Liberta memória dos efeitos nefastos. </p>
+<p>Libera a memória alocada para uma lista de efeitos nefastos. </p>
+<p>Liberta memória dos efeitos nefastos.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">lista</td><td>Lista a ser libertada </td></tr>
+    <tr><td class="paramname">lista</td><td>Ponteiro para o início da lista de efeitos nefastos </td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00149">149</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 
 </div>
 </div>
