@@ -18,7 +18,7 @@
      char frequencia;     ///< Frequência (ex: 'A', 'B', 'C')
      int coluna;         ///< Posição X (0 a MAX_COLUNAS-1)
      int linha;          ///< Posição Y (0 a MAX_LINHAS-1)
-     struct Antena *prox; ///< Ponteiro para a próxima antena
+     struct Antena *prox; ///< Apontador para a próxima antena
  } antena;
  
  /**
@@ -39,7 +39,7 @@
   * @param coluna Posição horizontal (começa em 0)
   * @param linha Posição vertical (começa em 0)
   * @param freq Frequência (carácter único)
-  * @return Ponteiro para antena criada ou NULL se erro
+  * @return Apontador para antena criada ou NULL se erro
   */
  antena* CriarAntena(int coluna, int linha, char freq);
  

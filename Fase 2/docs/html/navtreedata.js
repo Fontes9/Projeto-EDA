@@ -38,8 +38,7 @@ var NAVTREE =
       [ "Membros dos Ficheiros", "globals.html", [
         [ "Tudo", "globals.html", null ],
         [ "Funções", "globals_func.html", null ],
-        [ "Definições de tipos", "globals_type.html", null ],
-        [ "Macros", "globals_defs.html", null ]
+        [ "Definições de tipos", "globals_type.html", null ]
       ] ]
     ] ]
   ] ]

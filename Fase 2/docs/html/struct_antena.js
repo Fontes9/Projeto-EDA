@@ -4,5 +4,6 @@ var struct_antena =
     [ "conexoes", "struct_antena.html#af0b17ae8e2b504846eb5f74e5849b90d", null ],
     [ "frequencia", "struct_antena.html#a98d94cd90b6d9288fc867dbe7a6b6f41", null ],
     [ "linha", "struct_antena.html#a2913fa9623f812bffff810528877ee24", null ],
+    [ "proxima", "struct_antena.html#ab47b9eb29a9e4c3751c9a6c107409471", null ],
     [ "visitada", "struct_antena.html#a25676b23c83ec3094b9a2f7754c8cb68", null ]
 ];

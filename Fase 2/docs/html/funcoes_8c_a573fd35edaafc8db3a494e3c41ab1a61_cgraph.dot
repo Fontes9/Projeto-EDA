@@ -5,7 +5,9 @@ digraph "CarregarAntenasDoFicheiro"
   edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
   node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node1 [id="Node000001",label="CarregarAntenasDoFicheiro",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Carrega as antenas a partir de um ficheiro de texto."];
+  Node1 [id="Node000001",label="CarregarAntenasDoFicheiro",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Carrega a rede de antenas a partir de um ficheiro."];
   Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
-  Node2 [id="Node000002",label="AdicionarAdjacencia",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a957c4dc6f5d31583c40c1f36e30f1eb0",tooltip="Adiciona uma ligação entre antenas."];
+  Node2 [id="Node000002",label="AdicionarAdjacencia",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a0b12a6f9f6611240380a39bac46fad5f",tooltip="Adiciona uma ligação entre duas antenas."];
+  Node1 -> Node3 [id="edge2_Node000001_Node000003",color="steelblue1",style="solid",tooltip=" "];
+  Node3 [id="Node000003",label="AdicionarAntena",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#ad16278693879a2a9c2b3cb401bba4d36",tooltip="Adiciona uma nova antena ao grafo."];
 }

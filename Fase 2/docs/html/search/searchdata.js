@@ -1,12 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "acdefglmptv",
-  1: "ag",
+  0: "acdefgilmptv",
+  1: "acfg",
   2: "fm",
-  3: "acelmp",
+  3: "aceilmp",
   4: "acdflptv",
-  5: "ag",
-  6: "m"
+  5: "acfg"
 };
 
 var indexSectionNames =
@@ -16,8 +15,7 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "typedefs",
-  6: "defines"
+  5: "typedefs"
 };
 
 var indexSectionLabels =
@@ -27,7 +25,6 @@ var indexSectionLabels =
   2: "Ficheiros",
   3: "Funções",
   4: "Variáveis",
-  5: "Definições de tipos",
-  6: "Macros"
+  5: "Definições de tipos"
 };
 

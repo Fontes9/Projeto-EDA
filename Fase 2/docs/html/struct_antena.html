@@ -109,7 +109,7 @@ $(function(){initNavTree('struct_antena.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>Estrutura que representa uma antena.  
+<p>Estrutura que representa uma antena na rede.  
  <a href="#details">Mais...</a></p>
 
 <p><code>#include &lt;<a class="el" href="funcoes_8h_source.html">funcoes.h</a>&gt;</code></p>
@@ -122,20 +122,28 @@ Diagrama de colaboração para Antena:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Atributos Públicos</h2></td></tr>
 <tr class="memitem:a98d94cd90b6d9288fc867dbe7a6b6f41" id="r_a98d94cd90b6d9288fc867dbe7a6b6f41"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a98d94cd90b6d9288fc867dbe7a6b6f41">frequencia</a></td></tr>
+<tr class="memdesc:a98d94cd90b6d9288fc867dbe7a6b6f41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frequência de operação da antena (carácter único)  <br /></td></tr>
 <tr class="separator:a98d94cd90b6d9288fc867dbe7a6b6f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad28f77663b945c81f26e84c1b62cb63f" id="r_ad28f77663b945c81f26e84c1b62cb63f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad28f77663b945c81f26e84c1b62cb63f">coluna</a></td></tr>
+<tr class="memdesc:ad28f77663b945c81f26e84c1b62cb63f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posição horizontal na matriz (coordenada X)  <br /></td></tr>
 <tr class="separator:ad28f77663b945c81f26e84c1b62cb63f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2913fa9623f812bffff810528877ee24" id="r_a2913fa9623f812bffff810528877ee24"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2913fa9623f812bffff810528877ee24">linha</a></td></tr>
+<tr class="memdesc:a2913fa9623f812bffff810528877ee24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Posição vertical na matriz (coordenada Y)  <br /></td></tr>
 <tr class="separator:a2913fa9623f812bffff810528877ee24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0b17ae8e2b504846eb5f74e5849b90d" id="r_af0b17ae8e2b504846eb5f74e5849b90d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_adjacencia.html">Adjacencia</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0b17ae8e2b504846eb5f74e5849b90d">conexoes</a></td></tr>
+<tr class="memdesc:af0b17ae8e2b504846eb5f74e5849b90d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lista de ligações a outras antenas.  <br /></td></tr>
 <tr class="separator:af0b17ae8e2b504846eb5f74e5849b90d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25676b23c83ec3094b9a2f7754c8cb68" id="r_a25676b23c83ec3094b9a2f7754c8cb68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a25676b23c83ec3094b9a2f7754c8cb68">visitada</a></td></tr>
+<tr class="memdesc:a25676b23c83ec3094b9a2f7754c8cb68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicador se a antena foi visitada em algoritmos de travessia.  <br /></td></tr>
 <tr class="separator:a25676b23c83ec3094b9a2f7754c8cb68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47b9eb29a9e4c3751c9a6c107409471" id="r_ab47b9eb29a9e4c3751c9a6c107409471"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_antena.html">Antena</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab47b9eb29a9e4c3751c9a6c107409471">proxima</a></td></tr>
+<tr class="memdesc:ab47b9eb29a9e4c3751c9a6c107409471"><td class="mdescLeft">&#160;</td><td class="mdescRight">Apontador para a próxima antena na lista do grafo.  <br /></td></tr>
+<tr class="separator:ab47b9eb29a9e4c3751c9a6c107409471"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
-<div class="textblock"><p>Estrutura que representa uma antena. </p>
+<div class="textblock"><p>Estrutura que representa uma antena na rede. </p>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00032">32</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00026">26</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 </div><h2 class="groupheader">Documentação dos dados membro</h2>
 <a id="ad28f77663b945c81f26e84c1b62cb63f" name="ad28f77663b945c81f26e84c1b62cb63f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad28f77663b945c81f26e84c1b62cb63f">&#9670;&#160;</a></span>coluna</h2>
@@ -149,7 +157,9 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00034">34</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+<p>Posição horizontal na matriz (coordenada X) </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00028">28</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>
@@ -165,7 +175,9 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00036">36</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+<p>Lista de ligações a outras antenas. </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00030">30</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>
@@ -181,7 +193,9 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00033">33</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+<p>Frequência de operação da antena (carácter único) </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00027">27</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>
@@ -197,7 +211,27 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00035">35</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+<p>Posição vertical na matriz (coordenada Y) </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00029">29</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+
+</div>
+</div>
+<a id="ab47b9eb29a9e4c3751c9a6c107409471" name="ab47b9eb29a9e4c3751c9a6c107409471"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab47b9eb29a9e4c3751c9a6c107409471">&#9670;&#160;</a></span>proxima</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="struct_antena.html">Antena</a>* Antena::proxima</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Apontador para a próxima antena na lista do grafo. </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00032">32</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>
@@ -213,7 +247,9 @@ Atributos Públicos</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00037">37</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
+<p>Indicador se a antena foi visitada em algoritmos de travessia. </p>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8h_source.html#l00031">31</a> do ficheiro <a class="el" href="funcoes_8h_source.html">funcoes.h</a>.</p>
 
 </div>
 </div>

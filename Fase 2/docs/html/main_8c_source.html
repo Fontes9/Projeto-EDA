@@ -106,33 +106,39 @@ $(function(){initNavTree('main_8c_source.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 <a href="main_8c.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="funcoes_8h.html">funcoes.h</a>&quot;</span></div>
-<div class="foldopen" id="foldopen00012" data-start="{" data-end="}">
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   12</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    printf(<span class="stringliteral">&quot;Iniciando processamento...\n&quot;</span>);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <a class="code hl_struct" href="struct_grafo.html">Grafo</a> grafo = <a class="code hl_function" href="funcoes_8c.html#a573fd35edaafc8db3a494e3c41ab1a61">CarregarAntenasDoFicheiro</a>(<span class="stringliteral">&quot;antenas.txt&quot;</span>);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">if</span> (grafo.<a class="code hl_variable" href="struct_grafo.html#a7a6c1dae1153cb54a227fc572418ed95">total_antenas</a> == 0) {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        printf(<span class="stringliteral">&quot;Nenhuma antena carregada. Verifique o arquivo de entrada.\n&quot;</span>);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    }</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="funcoes_8h.html">funcoes.h</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span></div>
+<div class="foldopen" id="foldopen00017" data-start="{" data-end="}">
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">   17</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="comment">// Carregar a rede de antenas do ficheiro</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_struct" href="struct_grafo.html">Grafo</a> grafo = <a class="code hl_function" href="funcoes_8c.html#a573fd35edaafc8db3a494e3c41ab1a61">CarregarAntenasDoFicheiro</a>(<span class="stringliteral">&quot;antenas.txt&quot;</span>);</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    printf(<span class="stringliteral">&quot;Exportando resultados para resultado.txt...\n&quot;</span>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="funcoes_8c.html#affa1b9b88b97bde824fbdc7f96863bd3">ExportarResultados</a>(grafo, <span class="stringliteral">&quot;resultado.txt&quot;</span>);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <a class="code hl_function" href="funcoes_8c.html#a673217b5e06023cd2b87bde89cb2cd47">LibertarGrafo</a>(&amp;grafo);</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    printf(<span class="stringliteral">&quot;Processamento concluído com sucesso!\n&quot;</span>);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="comment">// Verificar se o carregamento foi bem sucedido</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">if</span> (grafo.<a class="code hl_variable" href="struct_grafo.html#a7a6c1dae1153cb54a227fc572418ed95">total_antenas</a> == 0) {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        fprintf(stderr, <span class="stringliteral">&quot;Erro: Nenhuma antena foi carregada.\n&quot;</span>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    }</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="comment">// Exportar os resultados das análises</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">if</span> (!<a class="code hl_function" href="funcoes_8c.html#affa1b9b88b97bde824fbdc7f96863bd3">ExportarResultados</a>(grafo, <span class="stringliteral">&quot;resultado.txt&quot;</span>)) {</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        fprintf(stderr, <span class="stringliteral">&quot;Erro ao exportar resultados.\n&quot;</span>);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <a class="code hl_function" href="funcoes_8c.html#a673217b5e06023cd2b87bde89cb2cd47">LibertarGrafo</a>(&amp;grafo);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    }</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="comment">// Libertar a memória alocada</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="funcoes_8c.html#a673217b5e06023cd2b87bde89cb2cd47">LibertarGrafo</a>(&amp;grafo);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
-<div class="ttc" id="afuncoes_8c_html_a573fd35edaafc8db3a494e3c41ab1a61"><div class="ttname"><a href="funcoes_8c.html#a573fd35edaafc8db3a494e3c41ab1a61">CarregarAntenasDoFicheiro</a></div><div class="ttdeci">Grafo CarregarAntenasDoFicheiro(const char *nome_ficheiro)</div><div class="ttdoc">Carrega as antenas a partir de um ficheiro de texto.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8c_source.html#l00025">funcoes.c:25</a></div></div>
-<div class="ttc" id="afuncoes_8c_html_a673217b5e06023cd2b87bde89cb2cd47"><div class="ttname"><a href="funcoes_8c.html#a673217b5e06023cd2b87bde89cb2cd47">LibertarGrafo</a></div><div class="ttdeci">bool LibertarGrafo(Grafo *grafo)</div><div class="ttdoc">Libera a memória alocada para o grafo.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8c_source.html#l00264">funcoes.c:264</a></div></div>
-<div class="ttc" id="afuncoes_8c_html_affa1b9b88b97bde824fbdc7f96863bd3"><div class="ttname"><a href="funcoes_8c.html#affa1b9b88b97bde824fbdc7f96863bd3">ExportarResultados</a></div><div class="ttdeci">bool ExportarResultados(Grafo grafo, const char *nome_ficheiro)</div><div class="ttdoc">Exporta todos os resultados para um ficheiro.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8c_source.html#l00217">funcoes.c:217</a></div></div>
-<div class="ttc" id="afuncoes_8h_html"><div class="ttname"><a href="funcoes_8h.html">funcoes.h</a></div><div class="ttdoc">Definição das estruturas e funções para manipulação do grafo de antenas.</div></div>
-<div class="ttc" id="amain_8c_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Função principal do programa.</div><div class="ttdef"><b>Definição</b> <a href="#l00012">main.c:12</a></div></div>
-<div class="ttc" id="astruct_grafo_html"><div class="ttname"><a href="struct_grafo.html">Grafo</a></div><div class="ttdoc">Estrutura principal do grafo de antenas.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8h_source.html#l00044">funcoes.h:44</a></div></div>
-<div class="ttc" id="astruct_grafo_html_a7a6c1dae1153cb54a227fc572418ed95"><div class="ttname"><a href="struct_grafo.html#a7a6c1dae1153cb54a227fc572418ed95">Grafo::total_antenas</a></div><div class="ttdeci">int total_antenas</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8h_source.html#l00046">funcoes.h:46</a></div></div>
+<div class="ttc" id="afuncoes_8c_html_a573fd35edaafc8db3a494e3c41ab1a61"><div class="ttname"><a href="funcoes_8c.html#a573fd35edaafc8db3a494e3c41ab1a61">CarregarAntenasDoFicheiro</a></div><div class="ttdeci">Grafo CarregarAntenasDoFicheiro(const char *nome_ficheiro)</div><div class="ttdoc">Carrega a rede de antenas a partir de um ficheiro.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8c_source.html#l00062">funcoes.c:62</a></div></div>
+<div class="ttc" id="afuncoes_8c_html_a673217b5e06023cd2b87bde89cb2cd47"><div class="ttname"><a href="funcoes_8c.html#a673217b5e06023cd2b87bde89cb2cd47">LibertarGrafo</a></div><div class="ttdeci">bool LibertarGrafo(Grafo *grafo)</div><div class="ttdoc">Liberta toda a memória alocada pelo grafo.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8c_source.html#l00349">funcoes.c:349</a></div></div>
+<div class="ttc" id="afuncoes_8c_html_affa1b9b88b97bde824fbdc7f96863bd3"><div class="ttname"><a href="funcoes_8c.html#affa1b9b88b97bde824fbdc7f96863bd3">ExportarResultados</a></div><div class="ttdeci">bool ExportarResultados(Grafo grafo, const char *nome_ficheiro)</div><div class="ttdoc">Exporta todos os resultados para um ficheiro.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8c_source.html#l00296">funcoes.c:296</a></div></div>
+<div class="ttc" id="afuncoes_8h_html"><div class="ttname"><a href="funcoes_8h.html">funcoes.h</a></div><div class="ttdoc">Ficheiro de cabeçalho com as definições e funções para gestão do grafo de antenas.</div></div>
+<div class="ttc" id="amain_8c_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdoc">Função principal do programa.</div><div class="ttdef"><b>Definição</b> <a href="#l00017">main.c:17</a></div></div>
+<div class="ttc" id="astruct_grafo_html"><div class="ttname"><a href="struct_grafo.html">Grafo</a></div><div class="ttdoc">Estrutura principal que representa o grafo de antenas.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8h_source.html#l00054">funcoes.h:54</a></div></div>
+<div class="ttc" id="astruct_grafo_html_a7a6c1dae1153cb54a227fc572418ed95"><div class="ttname"><a href="struct_grafo.html#a7a6c1dae1153cb54a227fc572418ed95">Grafo::total_antenas</a></div><div class="ttdeci">int total_antenas</div><div class="ttdoc">Número total de antenas no grafo.</div><div class="ttdef"><b>Definição</b> <a href="funcoes_8h_source.html#l00056">funcoes.h:56</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

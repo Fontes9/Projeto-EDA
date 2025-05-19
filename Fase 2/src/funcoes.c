@@ -6,27 +6,66 @@
 #include "funcoes.h"
 
 /**
- * @brief Adiciona uma ligação entre antenas
- * @param antena Apontador para a antena de origem
- * @param destino Índice da antena de destino
+ * @brief Adiciona uma ligação entre duas antenas
+ * @param origem Apontador para a antena de origem
+ * @param destino Apontador para a antena de destino
  * @return true se a ligação foi criada com sucesso, false caso contrário
+ * @note A ligação é adicionada no início da lista de adjacências
  */
-
-bool AdicionarAdjacencia(Antena* antena, int destino) {
-    Adjacencia* nova = (Adjacencia*)malloc(sizeof(Adjacencia));
-    if (nova == NULL) return false;
+bool AdicionarAdjacencia(Antena* origem, Antena* destino) {
+    if (!origem || !destino) return false;
+    
+    Adjacencia* nova = malloc(sizeof(Adjacencia));
+    if (!nova) return false;
     
     nova->destino = destino;
-    nova->proxima = antena->conexoes;
-    antena->conexoes = nova;
+    nova->proxima = origem->conexoes;
+    origem->conexoes = nova;
     return true;
 }
 
-Grafo CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
-    FILE* ficheiro = fopen(nome_ficheiro, "r");
-    Grafo grafo = { .total_antenas = 0 };
+/**
+ * @brief Adiciona uma nova antena ao grafo
+ * @param grafo Apontador para o grafo
+ * @param freq Frequência da antena (carácter único)
+ * @param col Posição horizontal (coluna)
+ * @param lin Posição vertical (linha)
+ * @return true se a antena foi adicionada com sucesso, false caso contrário
+ * @note A antena é adicionada no início da lista ligada
+ */
+bool AdicionarAntena(Grafo* grafo, char freq, int col, int lin) {
+    if (!grafo) return false;
+    
+    Antena* nova = malloc(sizeof(Antena));
+    if (!nova) return false;
+    
+    nova->frequencia = freq;
+    nova->coluna = col;
+    nova->linha = lin;
+    nova->conexoes = NULL;
+    nova->visitada = false;
+    nova->proxima = grafo->antenas;
+    grafo->antenas = nova;
+    grafo->total_antenas++;
+    return true;
+}
 
-    if (ficheiro == NULL) {
+/**
+ * @brief Carrega a rede de antenas a partir de um ficheiro
+ * @param nome_ficheiro Nome do ficheiro de entrada
+ * @return Estrutura Grafo populada
+ * @note Formato do ficheiro:
+ *       - Primeira linha: linhas colunas
+ *       - Linhas seguintes: matriz de caracteres
+ *       - Caracteres válidos: qualquer exceto '.' e ' '
+ */
+Grafo CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
+    Grafo grafo = { NULL, 0 };
+    
+    if (!nome_ficheiro) return grafo;
+    
+    FILE* ficheiro = fopen(nome_ficheiro, "r");
+    if (!ficheiro) {
         perror("Erro ao abrir ficheiro");
         return grafo;
     }
@@ -40,79 +79,91 @@ Grafo CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
 
     while (fgetc(ficheiro) != '\n');
 
-    char linha[MAX_COLUNAS + 2];
+    char linha[1024]; // Buffer fixo alternativo
     for (int y = 0; y < linhas && fgets(linha, sizeof(linha), ficheiro) != NULL; y++) {
-        linha[strcspn(linha, "\n")] = '\0';
+        linha[strcspn(linha, "\n")] = '\0'; // Remove newline
         for (int x = 0; x < colunas && x < (int)strlen(linha); x++) {
             if (linha[x] != '.' && linha[x] != ' ') {
-                grafo.antenas[grafo.total_antenas].frequencia = linha[x];
-                grafo.antenas[grafo.total_antenas].coluna = x;
-                grafo.antenas[grafo.total_antenas].linha = y;
-                grafo.antenas[grafo.total_antenas].conexoes = NULL;
-                grafo.antenas[grafo.total_antenas].visitada = false;
-                grafo.total_antenas++;
+                AdicionarAntena(&grafo, linha[x], x, y);
             }
         }
     }
+    
     fclose(ficheiro);
 
-    for (int i = 0; i < grafo.total_antenas; i++) {
-        for (int j = i + 1; j < grafo.total_antenas; j++) {
-            if (grafo.antenas[i].frequencia == grafo.antenas[j].frequencia) {
-                AdicionarAdjacencia(&grafo.antenas[i], j);
-                AdicionarAdjacencia(&grafo.antenas[j], i);
+    // Restante da função permanece igual
+    for (Antena* a1 = grafo.antenas; a1 != NULL; a1 = a1->proxima) {
+        for (Antena* a2 = grafo.antenas; a2 != NULL; a2 = a2->proxima) {
+            if (a1 != a2 && a1->frequencia == a2->frequencia) {
+                AdicionarAdjacencia(a1, a2);
             }
         }
     }
-
+    
     return grafo;
 }
 
-bool LimparVisitados(Grafo* grafo) {
-    if (grafo == NULL) return false;
-    for (int i = 0; i < grafo->total_antenas; i++) {
-        grafo->antenas[i].visitada = false;
+/**
+ * @brief Função auxiliar para busca em profundidade (DFS)
+ * @param grafo Apontador para o grafo
+ * @param atual Apontador para a antena atual
+ * @param saida Ficheiro de saída para resultados
+ * @return true se a operação foi bem sucedida
+ */
+bool ProcuraEmProfundidade(Grafo* grafo, Antena* atual, FILE* saida) {
+    if (!grafo || !atual || !saida) return false;
+    if (atual->visitada) return true;
+    
+    atual->visitada = true;
+    fprintf(saida, "Antena %c @ (%d,%d)\n", atual->frequencia, atual->coluna, atual->linha);
+
+    for (Adjacencia* adj = atual->conexoes; adj != NULL; adj = adj->proxima) {
+        ProcuraEmProfundidade(grafo, adj->destino, saida);
     }
     return true;
 }
 
-bool ProcuraEmProfundidade(Grafo* grafo, int atual, FILE* saida) {
-    if (grafo == NULL || atual < 0 || atual >= grafo->total_antenas || saida == NULL) {
-        return false;
-    }
+/**
+ * @brief Função auxiliar para busca em largura (BFS)
+ * @param grafo Apontador para o grafo
+ * @param inicio Apontador para a antena inicial
+ * @param saida Ficheiro de saída para resultados
+ * @return true se a operação foi bem sucedida
+ * @note Utiliza uma fila implementada com lista ligada
+ */
+bool ProcuraEmLargura(Grafo* grafo, Antena* inicio, FILE* saida) {
+    if (!grafo || !inicio || !saida) return false;
     
-    grafo->antenas[atual].visitada = true;
-    Antena a = grafo->antenas[atual];
-    fprintf(saida, "Antena %c @ (%d,%d)\n", a.frequencia, a.coluna, a.linha);
-
-    for (Adjacencia* adj = a.conexoes; adj != NULL; adj = adj->proxima) {
-        if (!grafo->antenas[adj->destino].visitada) {
-            ProcuraEmProfundidade(grafo, adj->destino, saida);
-        }
-    }
-    return true;
-}
-
-bool ProcuraEmLargura(Grafo* grafo, int inicio, FILE* saida) {
-    if (grafo == NULL || inicio < 0 || inicio >= grafo->total_antenas || saida == NULL) {
-        return false;
-    }
+    FilaNode* frente = NULL;
+    FilaNode* tras = NULL;
     
-    int fila[MAX_ANTENAS];
-    int frente = 0, tras = 0;
+    FilaNode* novo = malloc(sizeof(FilaNode));
+    if (!novo) return false;
+    novo->antena = inicio;
+    novo->proxima = NULL;
     
-    grafo->antenas[inicio].visitada = true;
-    fila[tras++] = inicio;
-
-    while (frente < tras) {
-        int atual = fila[frente++];
-        Antena a = grafo->antenas[atual];
-        fprintf(saida, "Antena %c @ (%d,%d)\n", a.frequencia, a.coluna, a.linha);
-
-        for (Adjacencia* adj = a.conexoes; adj != NULL; adj = adj->proxima) {
-            if (!grafo->antenas[adj->destino].visitada) {
-                grafo->antenas[adj->destino].visitada = true;
-                fila[tras++] = adj->destino;
+    frente = tras = novo;
+    inicio->visitada = true;
+    
+    while (frente) {
+        Antena* atual = frente->antena;
+        FilaNode* temp = frente;
+        frente = frente->proxima;
+        free(temp);
+        
+        fprintf(saida, "Antena %c @ (%d,%d)\n", atual->frequencia, atual->coluna, atual->linha);
+        
+        for (Adjacencia* adj = atual->conexoes; adj != NULL; adj = adj->proxima) {
+            if (!adj->destino->visitada) {
+                adj->destino->visitada = true;
+                FilaNode* novo_node = malloc(sizeof(FilaNode));
+                if (!novo_node) continue;
+                novo_node->antena = adj->destino;
+                novo_node->proxima = NULL;
+                
+                if (!frente) frente = novo_node;
+                else tras->proxima = novo_node;
+                tras = novo_node;
             }
         }
     }
@@ -120,66 +171,85 @@ bool ProcuraEmLargura(Grafo* grafo, int inicio, FILE* saida) {
 }
 
 /**
- * @brief Função auxiliar recursiva para encontrar caminhos
- * @param grafo Apontador para o grafo de antenas
- * @param atual Índice da antena atual no caminho
- * @param destino Índice da antena de destino
- * @param visitados Array de antenas visitadas
- * @param caminho Array com os índices do caminho atual
- * @param pos Posição atual no caminho
- * @param saida Ficheiro de saída para registar os resultados
- * @return true se a operação foi bem sucedida, false caso contrário
+ * @brief Função auxiliar para imprimir um caminho
+ * @param caminho Apontador para o início do caminho
+ * @param saida Ficheiro de saída
+ * @note Função recursiva que imprime do fim para o início
  */
+static void ImprimirCaminho(CaminhoNode* caminho, FILE* saida) {
+    if (!caminho) return;
+    ImprimirCaminho(caminho->proxima, saida);
+    fprintf(saida, "%c(%d,%d)", caminho->antena->frequencia, caminho->antena->coluna, caminho->antena->linha);
+    if (caminho->proxima) fprintf(saida, " -> ");
+}
 
-bool EncontrarCaminhosRec(Grafo* grafo, int atual, int destino, bool visitados[], int caminho[], int pos, FILE* saida) {
-    visitados[atual] = true;
-    caminho[pos] = atual;
-    pos++;
-
+/**
+ * @brief Função auxiliar recursiva para encontrar caminhos
+ * @param grafo Apontador para o grafo
+ * @param atual Antena atual no caminho
+ * @param destino Antena de destino
+ * @param caminho Caminho acumulado
+ * @param saida Ficheiro de saída
+ * @return true se a operação foi bem sucedida
+ */
+bool EncontrarCaminhosRec(Grafo* grafo, Antena* atual, Antena* destino, CaminhoNode* caminho, FILE* saida) {
+    CaminhoNode* novo = malloc(sizeof(CaminhoNode));
+    if (!novo) return false;
+    novo->antena = atual;
+    novo->proxima = caminho;
+    caminho = novo;
+    
+    atual->visitada = true;
+    
     if (atual == destino) {
-        for (int i = 0; i < pos; i++) {
-            Antena a = grafo->antenas[caminho[i]];
-            fprintf(saida, "%c(%d,%d)", a.frequencia, a.coluna, a.linha);
-            if (i < pos - 1) fprintf(saida, " -> ");
-        }
+        ImprimirCaminho(caminho, saida);
         fprintf(saida, "\n");
     } else {
-        for (Adjacencia* adj = grafo->antenas[atual].conexoes; adj != NULL; adj = adj->proxima) {
-            if (!visitados[adj->destino]) {
-                EncontrarCaminhosRec(grafo, adj->destino, destino, visitados, caminho, pos, saida);
+        for (Adjacencia* adj = atual->conexoes; adj != NULL; adj = adj->proxima) {
+            if (!adj->destino->visitada) {
+                EncontrarCaminhosRec(grafo, adj->destino, destino, caminho, saida);
             }
         }
     }
-
-    visitados[atual] = false;
-    return true;
-}
-
-bool EncontrarCaminhos(Grafo* grafo, int origem, int destino, FILE* saida) {
-    if (grafo == NULL || origem < 0 || origem >= grafo->total_antenas || 
-        destino < 0 || destino >= grafo->total_antenas || saida == NULL) {
-        return false;
-    }
-
-    bool visitados[MAX_ANTENAS] = {false};
-    int caminho[MAX_ANTENAS];
-    EncontrarCaminhosRec(grafo, origem, destino, visitados, caminho, 0, saida);
-    return true;
-}
-
-bool MostrarIntersecoes(Grafo* grafo, char freqA, char freqB, FILE* saida) {
-    if (grafo == NULL || saida == NULL) return false;
     
-    for (int i = 0; i < grafo->total_antenas; i++) {
-        if (grafo->antenas[i].frequencia == freqA) {
-            for (int j = 0; j < grafo->total_antenas; j++) {
-                if (grafo->antenas[j].frequencia == freqB) {
-                    if (grafo->antenas[i].linha == grafo->antenas[j].linha || 
-                        grafo->antenas[i].coluna == grafo->antenas[j].coluna) {
-                        fprintf(saida, "%c(%d,%d) - %c(%d,%d)\n",
-                               freqA, grafo->antenas[i].coluna, grafo->antenas[i].linha,
-                               freqB, grafo->antenas[j].coluna, grafo->antenas[j].linha);
-                    }
+    atual->visitada = false;
+    free(caminho);
+    return true;
+}
+
+/**
+ * @brief Encontra todos os caminhos entre duas antenas
+ * @param grafo Apontador para o grafo
+ * @param origem Antena de origem
+ * @param destino Antena de destino
+ * @param saida Ficheiro de saída
+ * @return true se a operação foi bem sucedida
+ */
+bool EncontrarCaminhos(Grafo* grafo, Antena* origem, Antena* destino, FILE* saida) {
+    if (!grafo || !origem || !destino || !saida) return false;
+    LimparVisitados(grafo);
+    return EncontrarCaminhosRec(grafo, origem, destino, NULL, saida);
+}
+
+/**
+ * @brief Mostra intersecções entre antenas de frequências diferentes
+ * @param grafo Apontador para o grafo
+ * @param freqA Primeira frequência
+ * @param freqB Segunda frequência
+ * @param saida Ficheiro de saída
+ * @return true se a operação foi bem sucedida
+ */
+bool MostrarIntersecoes(Grafo* grafo, char freqA, char freqB, FILE* saida) {
+    if (!grafo || !saida) return false;
+    
+    for (Antena* a = grafo->antenas; a != NULL; a = a->proxima) {
+        if (a->frequencia == freqA) {
+            for (Antena* b = grafo->antenas; b != NULL; b = b->proxima) {
+                if (b->frequencia == freqB && 
+                    (a->linha == b->linha || a->coluna == b->coluna)) {
+                    fprintf(saida, "%c(%d,%d) - %c(%d,%d)\n",
+                           freqA, a->coluna, a->linha,
+                           freqB, b->coluna, b->linha);
                 }
             }
         }
@@ -187,25 +257,28 @@ bool MostrarIntersecoes(Grafo* grafo, char freqA, char freqB, FILE* saida) {
     return true;
 }
 
+/**
+ * @brief Calcula pontos de interferência entre antenas
+ * @param grafo Apontador para o grafo
+ * @param saida Ficheiro de saída
+ * @return true se a operação foi bem sucedida
+ */
 bool CalcularInterferencias(Grafo* grafo, FILE* saida) {
-    if (grafo == NULL || saida == NULL) return false;
+    if (!grafo || !saida) return false;
     
     fprintf(saida, "=== PONTOS DE INTERFERENCIA ===\n");
     
-    for (int i = 0; i < grafo->total_antenas; i++) {
-        for (int j = i + 1; j < grafo->total_antenas; j++) {
-            if (grafo->antenas[i].frequencia == grafo->antenas[j].frequencia) {
-                int dx = grafo->antenas[j].coluna - grafo->antenas[i].coluna;
-                int dy = grafo->antenas[j].linha - grafo->antenas[i].linha;
+    for (Antena* a1 = grafo->antenas; a1 != NULL; a1 = a1->proxima) {
+        for (Antena* a2 = grafo->antenas; a2 != NULL; a2 = a2->proxima) {
+            if (a1->frequencia == a2->frequencia) {
+                int dx = a2->coluna - a1->coluna;
+                int dy = a2->linha - a1->linha;
 
                 if (dx == 0 || dy == 0 || abs(dx) == abs(dy)) {
                     for (int k = 1; k < 3; k++) {
-                        int x = grafo->antenas[i].coluna + (k * dx) / 3;
-                        int y = grafo->antenas[i].linha + (k * dy) / 3;
-                        
-                        if (x >= 0 && x < MAX_COLUNAS && y >= 0 && y < MAX_LINHAS) {
-                            fprintf(saida, "(%d,%d)\n", x, y);
-                        }
+                        int x = a1->coluna + (k * dx) / 3;
+                        int y = a1->linha + (k * dy) / 3;
+                        fprintf(saida, "(%d,%d)\n", x, y);
                     }
                 }
             }
@@ -214,41 +287,48 @@ bool CalcularInterferencias(Grafo* grafo, FILE* saida) {
     return true;
 }
 
+/**
+ * @brief Exporta todos os resultados para um ficheiro
+ * @param grafo Grafo a ser analisado
+ * @param nome_ficheiro Nome do ficheiro de saída
+ * @return true se a operação foi bem sucedida
+ */
 bool ExportarResultados(Grafo grafo, const char* nome_ficheiro) {
+    if (!nome_ficheiro) return false;
+    
     FILE* saida = fopen(nome_ficheiro, "w");
-    if (saida == NULL) {
+    if (!saida) {
         perror("Erro ao criar ficheiro");
         return false;
     }
 
     fprintf(saida, "=== ANTENAS (%d) ===\n", grafo.total_antenas);
-    for (int i = 0; i < grafo.total_antenas; i++) {
-        fprintf(saida, "%d: %c @ (%d,%d)\n", 
-               i, grafo.antenas[i].frequencia,
-               grafo.antenas[i].coluna,
-               grafo.antenas[i].linha);
+    for (Antena* a = grafo.antenas; a != NULL; a = a->proxima) {
+        fprintf(saida, "%c @ (%d,%d)\n", a->frequencia, a->coluna, a->linha);
     }
 
     if (grafo.total_antenas > 0) {
-        fprintf(saida, "\n=== BUSCA EM PROFUNDIDADE (a partir da antena 0) ===\n");
-        ProcuraEmProfundidade(&grafo, 0, saida);
+        Antena* primeira = grafo.antenas;
+        
+        fprintf(saida, "\n=== BUSCA EM PROFUNDIDADE ===\n");
+        ProcuraEmProfundidade(&grafo, primeira, saida);
         LimparVisitados(&grafo);
 
-        fprintf(saida, "\n=== BUSCA EM LARGURA (a partir da antena 0) ===\n");
-        ProcuraEmLargura(&grafo, 0, saida);
+        fprintf(saida, "\n=== BUSCA EM LARGURA ===\n");
+        ProcuraEmLargura(&grafo, primeira, saida);
         LimparVisitados(&grafo);
 
         if (grafo.total_antenas > 2) {
-            fprintf(saida, "\n=== CAMINHOS ENTRE ANTENAS 0 e 2 ===\n");
-            EncontrarCaminhos(&grafo, 0, 2, saida);
+            Antena* terceira = primeira->proxima->proxima;
+            fprintf(saida, "\n=== CAMINHOS ENTRE ANTENAS ===\n");
+            EncontrarCaminhos(&grafo, primeira, terceira, saida);
         }
 
-        fprintf(saida, "\n=== INTERSECOES ENTRE FREQUENCIAS ===\n");
-        for (int i = 0; i < grafo.total_antenas; i++) {
-            for (int j = i + 1; j < grafo.total_antenas; j++) {
-                if (grafo.antenas[i].frequencia != grafo.antenas[j].frequencia) {
-                    MostrarIntersecoes(&grafo, grafo.antenas[i].frequencia, 
-                                     grafo.antenas[j].frequencia, saida);
+        fprintf(saida, "\n=== INTERSECOES ===\n");
+        for (Antena* a1 = grafo.antenas; a1 != NULL; a1 = a1->proxima) {
+            for (Antena* a2 = grafo.antenas; a2 != NULL; a2 = a2->proxima) {
+                if (a1->frequencia != a2->frequencia) {
+                    MostrarIntersecoes(&grafo, a1->frequencia, a2->frequencia, saida);
                 }
             }
         }
@@ -261,16 +341,42 @@ bool ExportarResultados(Grafo grafo, const char* nome_ficheiro) {
     return true;
 }
 
+/**
+ * @brief Liberta toda a memória alocada pelo grafo
+ * @param grafo Apontador para o grafo
+ * @return true se a operação foi bem sucedida
+ */
 bool LibertarGrafo(Grafo* grafo) {
-    if (grafo == NULL) return false;
+    if (!grafo) return false;
     
-    for (int i = 0; i < grafo->total_antenas; i++) {
-        Adjacencia* atual = grafo->antenas[i].conexoes;
-        while (atual != NULL) {
-            Adjacencia* temp = atual;
-            atual = atual->proxima;
+    Antena* atual = grafo->antenas;
+    while (atual) {
+        Adjacencia* adj = atual->conexoes;
+        while (adj) {
+            Adjacencia* temp = adj;
+            adj = adj->proxima;
             free(temp);
         }
+        
+        Antena* temp = atual;
+        atual = atual->proxima;
+        free(temp);
+    }
+    
+    grafo->antenas = NULL;
+    grafo->total_antenas = 0;
+    return true;
+}
+
+/**
+ * @brief Reinicia os marcadores de visita das antenas
+ * @param grafo Apontador para o grafo
+ * @return true se a operação foi bem sucedida
+ */
+bool LimparVisitados(Grafo* grafo) {
+    if (!grafo) return false;
+    for (Antena* a = grafo->antenas; a != NULL; a = a->proxima) {
+        a->visitada = false;
     }
     return true;
 }

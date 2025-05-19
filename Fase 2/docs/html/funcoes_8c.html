@@ -121,47 +121,53 @@ Diagrama de dependências de inclusão para funcoes.c:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funções</h2></td></tr>
-<tr class="memitem:a957c4dc6f5d31583c40c1f36e30f1eb0" id="r_a957c4dc6f5d31583c40c1f36e30f1eb0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a957c4dc6f5d31583c40c1f36e30f1eb0">AdicionarAdjacencia</a> (<a class="el" href="struct_antena.html">Antena</a> *antena, int destino)</td></tr>
-<tr class="memdesc:a957c4dc6f5d31583c40c1f36e30f1eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona uma ligação entre antenas.  <br /></td></tr>
-<tr class="separator:a957c4dc6f5d31583c40c1f36e30f1eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b12a6f9f6611240380a39bac46fad5f" id="r_a0b12a6f9f6611240380a39bac46fad5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b12a6f9f6611240380a39bac46fad5f">AdicionarAdjacencia</a> (<a class="el" href="struct_antena.html">Antena</a> *origem, <a class="el" href="struct_antena.html">Antena</a> *destino)</td></tr>
+<tr class="memdesc:a0b12a6f9f6611240380a39bac46fad5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona uma ligação entre duas antenas.  <br /></td></tr>
+<tr class="separator:a0b12a6f9f6611240380a39bac46fad5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad16278693879a2a9c2b3cb401bba4d36" id="r_ad16278693879a2a9c2b3cb401bba4d36"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad16278693879a2a9c2b3cb401bba4d36">AdicionarAntena</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, char freq, int col, int lin)</td></tr>
+<tr class="memdesc:ad16278693879a2a9c2b3cb401bba4d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adiciona uma nova antena ao grafo.  <br /></td></tr>
+<tr class="separator:ad16278693879a2a9c2b3cb401bba4d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a573fd35edaafc8db3a494e3c41ab1a61" id="r_a573fd35edaafc8db3a494e3c41ab1a61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_grafo.html">Grafo</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a573fd35edaafc8db3a494e3c41ab1a61">CarregarAntenasDoFicheiro</a> (const char *nome_ficheiro)</td></tr>
-<tr class="memdesc:a573fd35edaafc8db3a494e3c41ab1a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega as antenas a partir de um ficheiro de texto.  <br /></td></tr>
+<tr class="memdesc:a573fd35edaafc8db3a494e3c41ab1a61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Carrega a rede de antenas a partir de um ficheiro.  <br /></td></tr>
 <tr class="separator:a573fd35edaafc8db3a494e3c41ab1a61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f4ca7899307299d713da05e73505b69" id="r_a5f4ca7899307299d713da05e73505b69"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f4ca7899307299d713da05e73505b69">LimparVisitados</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo)</td></tr>
-<tr class="memdesc:a5f4ca7899307299d713da05e73505b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Limpa os flags de visitadas de todas as antenas.  <br /></td></tr>
-<tr class="separator:a5f4ca7899307299d713da05e73505b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a552f9c38cd5de75641d8c9611ba0bff4" id="r_a552f9c38cd5de75641d8c9611ba0bff4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a552f9c38cd5de75641d8c9611ba0bff4">ProcuraEmProfundidade</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, int atual, FILE *saida)</td></tr>
-<tr class="memdesc:a552f9c38cd5de75641d8c9611ba0bff4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza uma busca em profundidade a partir de uma antena.  <br /></td></tr>
-<tr class="separator:a552f9c38cd5de75641d8c9611ba0bff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bbefff0ab57b1b4eb06263198b326a8" id="r_a0bbefff0ab57b1b4eb06263198b326a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0bbefff0ab57b1b4eb06263198b326a8">ProcuraEmLargura</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, int inicio, FILE *saida)</td></tr>
-<tr class="memdesc:a0bbefff0ab57b1b4eb06263198b326a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Realiza uma busca em largura a partir de uma antena.  <br /></td></tr>
-<tr class="separator:a0bbefff0ab57b1b4eb06263198b326a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a434c2fa83b6b0963a956dbf5a5976862" id="r_a434c2fa83b6b0963a956dbf5a5976862"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a434c2fa83b6b0963a956dbf5a5976862">EncontrarCaminhosRec</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, int atual, int destino, bool visitados[], int caminho[], int pos, FILE *saida)</td></tr>
-<tr class="memdesc:a434c2fa83b6b0963a956dbf5a5976862"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar recursiva para encontrar caminhos.  <br /></td></tr>
-<tr class="separator:a434c2fa83b6b0963a956dbf5a5976862"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8db3d8843f0e58bbd54604e757efea1" id="r_ad8db3d8843f0e58bbd54604e757efea1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8db3d8843f0e58bbd54604e757efea1">EncontrarCaminhos</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, int origem, int destino, FILE *saida)</td></tr>
-<tr class="memdesc:ad8db3d8843f0e58bbd54604e757efea1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra todos os caminhos entre duas antenas.  <br /></td></tr>
-<tr class="separator:ad8db3d8843f0e58bbd54604e757efea1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2360cffbff464adaba570ff530ac627" id="r_aa2360cffbff464adaba570ff530ac627"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa2360cffbff464adaba570ff530ac627">ProcuraEmProfundidade</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, <a class="el" href="struct_antena.html">Antena</a> *atual, FILE *saida)</td></tr>
+<tr class="memdesc:aa2360cffbff464adaba570ff530ac627"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar para busca em profundidade (DFS)  <br /></td></tr>
+<tr class="separator:aa2360cffbff464adaba570ff530ac627"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7acf86e368fdccb889eb76b369fcc6a" id="r_ad7acf86e368fdccb889eb76b369fcc6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad7acf86e368fdccb889eb76b369fcc6a">ProcuraEmLargura</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, <a class="el" href="struct_antena.html">Antena</a> *inicio, FILE *saida)</td></tr>
+<tr class="memdesc:ad7acf86e368fdccb889eb76b369fcc6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar para busca em largura (BFS)  <br /></td></tr>
+<tr class="separator:ad7acf86e368fdccb889eb76b369fcc6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79524d837e8144f10b2b339a07279d69" id="r_a79524d837e8144f10b2b339a07279d69"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79524d837e8144f10b2b339a07279d69">ImprimirCaminho</a> (<a class="el" href="struct_caminho_node.html">CaminhoNode</a> *caminho, FILE *saida)</td></tr>
+<tr class="memdesc:a79524d837e8144f10b2b339a07279d69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar para imprimir um caminho.  <br /></td></tr>
+<tr class="separator:a79524d837e8144f10b2b339a07279d69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9874eb4dbfb03f03ba564fa0f63f62b" id="r_ad9874eb4dbfb03f03ba564fa0f63f62b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9874eb4dbfb03f03ba564fa0f63f62b">EncontrarCaminhosRec</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, <a class="el" href="struct_antena.html">Antena</a> *atual, <a class="el" href="struct_antena.html">Antena</a> *destino, <a class="el" href="struct_caminho_node.html">CaminhoNode</a> *caminho, FILE *saida)</td></tr>
+<tr class="memdesc:ad9874eb4dbfb03f03ba564fa0f63f62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Função auxiliar recursiva para encontrar caminhos.  <br /></td></tr>
+<tr class="separator:ad9874eb4dbfb03f03ba564fa0f63f62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1bdd09c7693f114da612b96c50ba3a9" id="r_af1bdd09c7693f114da612b96c50ba3a9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af1bdd09c7693f114da612b96c50ba3a9">EncontrarCaminhos</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, <a class="el" href="struct_antena.html">Antena</a> *origem, <a class="el" href="struct_antena.html">Antena</a> *destino, FILE *saida)</td></tr>
+<tr class="memdesc:af1bdd09c7693f114da612b96c50ba3a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encontra todos os caminhos entre duas antenas.  <br /></td></tr>
+<tr class="separator:af1bdd09c7693f114da612b96c50ba3a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86286bb4f2de0e99bbd66dc24d04a139" id="r_a86286bb4f2de0e99bbd66dc24d04a139"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a86286bb4f2de0e99bbd66dc24d04a139">MostrarIntersecoes</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, char freqA, char freqB, FILE *saida)</td></tr>
-<tr class="memdesc:a86286bb4f2de0e99bbd66dc24d04a139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mostra interseções entre antenas de frequências diferentes.  <br /></td></tr>
+<tr class="memdesc:a86286bb4f2de0e99bbd66dc24d04a139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mostra intersecções entre antenas de frequências diferentes.  <br /></td></tr>
 <tr class="separator:a86286bb4f2de0e99bbd66dc24d04a139"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a206d3e4c6b6befe5f9dff5babad472d6" id="r_a206d3e4c6b6befe5f9dff5babad472d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a206d3e4c6b6befe5f9dff5babad472d6">CalcularInterferencias</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo, FILE *saida)</td></tr>
-<tr class="memdesc:a206d3e4c6b6befe5f9dff5babad472d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula pontos de interferência entre antenas da mesma frequência.  <br /></td></tr>
+<tr class="memdesc:a206d3e4c6b6befe5f9dff5babad472d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calcula pontos de interferência entre antenas.  <br /></td></tr>
 <tr class="separator:a206d3e4c6b6befe5f9dff5babad472d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affa1b9b88b97bde824fbdc7f96863bd3" id="r_affa1b9b88b97bde824fbdc7f96863bd3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#affa1b9b88b97bde824fbdc7f96863bd3">ExportarResultados</a> (<a class="el" href="struct_grafo.html">Grafo</a> grafo, const char *nome_ficheiro)</td></tr>
 <tr class="memdesc:affa1b9b88b97bde824fbdc7f96863bd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exporta todos os resultados para um ficheiro.  <br /></td></tr>
 <tr class="separator:affa1b9b88b97bde824fbdc7f96863bd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a673217b5e06023cd2b87bde89cb2cd47" id="r_a673217b5e06023cd2b87bde89cb2cd47"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a673217b5e06023cd2b87bde89cb2cd47">LibertarGrafo</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo)</td></tr>
-<tr class="memdesc:a673217b5e06023cd2b87bde89cb2cd47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libera a memória alocada para o grafo.  <br /></td></tr>
+<tr class="memdesc:a673217b5e06023cd2b87bde89cb2cd47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Liberta toda a memória alocada pelo grafo.  <br /></td></tr>
 <tr class="separator:a673217b5e06023cd2b87bde89cb2cd47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f4ca7899307299d713da05e73505b69" id="r_a5f4ca7899307299d713da05e73505b69"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f4ca7899307299d713da05e73505b69">LimparVisitados</a> (<a class="el" href="struct_grafo.html">Grafo</a> *grafo)</td></tr>
+<tr class="memdesc:a5f4ca7899307299d713da05e73505b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reinicia os marcadores de visita das antenas.  <br /></td></tr>
+<tr class="separator:a5f4ca7899307299d713da05e73505b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Descrição detalhada</h2>
 <div class="textblock"><p>Implementação das funções para gestão do grafo de antenas. </p>
 
 <p class="definition">Definido no ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 </div><h2 class="groupheader">Documentação das funções</h2>
-<a id="a957c4dc6f5d31583c40c1f36e30f1eb0" name="a957c4dc6f5d31583c40c1f36e30f1eb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a957c4dc6f5d31583c40c1f36e30f1eb0">&#9670;&#160;</a></span>AdicionarAdjacencia()</h2>
+<a id="a0b12a6f9f6611240380a39bac46fad5f" name="a0b12a6f9f6611240380a39bac46fad5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b12a6f9f6611240380a39bac46fad5f">&#9670;&#160;</a></span>AdicionarAdjacencia()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,31 +175,83 @@ Funções</h2></td></tr>
         <tr>
           <td class="memname">bool AdicionarAdjacencia </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>antena</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>origem</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>destino</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>destino</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adiciona uma ligação entre antenas. </p>
+<p>Adiciona uma ligação entre duas antenas. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">antena</td><td>Apontador para a antena de origem </td></tr>
-    <tr><td class="paramname">destino</td><td>Índice da antena de destino </td></tr>
+    <tr><td class="paramname">origem</td><td>Apontador para a antena de origem </td></tr>
+    <tr><td class="paramname">destino</td><td>Apontador para a antena de destino </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Retorna</dt><dd>true se a ligação foi criada com sucesso, false caso contrário </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>A ligação é adicionada no início da lista de adjacências </dd></dl>
 
 <p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00015">15</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_a957c4dc6f5d31583c40c1f36e30f1eb0_icgraph.png" border="0" usemap="#afuncoes_8c_a957c4dc6f5d31583c40c1f36e30f1eb0_icgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_a0b12a6f9f6611240380a39bac46fad5f_icgraph.png" border="0" usemap="#afuncoes_8c_a0b12a6f9f6611240380a39bac46fad5f_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ad16278693879a2a9c2b3cb401bba4d36" name="ad16278693879a2a9c2b3cb401bba4d36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad16278693879a2a9c2b3cb401bba4d36">&#9670;&#160;</a></span>AdicionarAntena()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AdicionarAntena </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_grafo.html">Grafo</a> *</td>          <td class="paramname"><span class="paramname"><em>grafo</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char</td>          <td class="paramname"><span class="paramname"><em>freq</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>col</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>lin</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adiciona uma nova antena ao grafo. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">freq</td><td>Frequência da antena (carácter único) </td></tr>
+    <tr><td class="paramname">col</td><td>Posição horizontal (coluna) </td></tr>
+    <tr><td class="paramname">lin</td><td>Posição vertical (linha) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a antena foi adicionada com sucesso, false caso contrário </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>A antena é adicionada no início da lista ligada </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00036">36</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="funcoes_8c_ad16278693879a2a9c2b3cb401bba4d36_icgraph.png" border="0" usemap="#afuncoes_8c_ad16278693879a2a9c2b3cb401bba4d36_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -217,17 +275,17 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Calcula pontos de interferência entre antenas da mesma frequência. </p>
+<p>Calcula pontos de interferência entre antenas. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo de antenas </td></tr>
-    <tr><td class="paramname">saida</td><td>ficheiro de saída para gravar os resultados </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00190">190</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00266">266</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
@@ -251,16 +309,23 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Carrega as antenas a partir de um ficheiro de texto. </p>
+<p>Carrega a rede de antenas a partir de um ficheiro. </p>
+<p>Carrega as antenas a partir de um ficheiro de texto.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome_ficheiro</td><td>Nome do ficheiro contendo os dados das antenas </td></tr>
+    <tr><td class="paramname">nome_ficheiro</td><td>Nome do ficheiro de entrada </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd><a class="el" href="struct_grafo.html" title="Estrutura principal do grafo de antenas.">Grafo</a> populado com as antenas e suas ligações </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>Estrutura <a class="el" href="struct_grafo.html" title="Estrutura principal que representa o grafo de antenas.">Grafo</a> populada </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Formato do ficheiro:<ul>
+<li>Primeira linha: linhas colunas</li>
+<li>Linhas seguintes: matriz de caracteres</li>
+<li>Caracteres válidos: qualquer exceto '.' e ' ' </li>
+</ul>
+</dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00025">25</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00062">62</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Grafo de chamadas desta função:</div>
 <div class="dyncontent">
@@ -274,8 +339,8 @@ Este é o diagrama das funções que utilizam esta função:</div>
 
 </div>
 </div>
-<a id="ad8db3d8843f0e58bbd54604e757efea1" name="ad8db3d8843f0e58bbd54604e757efea1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad8db3d8843f0e58bbd54604e757efea1">&#9670;&#160;</a></span>EncontrarCaminhos()</h2>
+<a id="af1bdd09c7693f114da612b96c50ba3a9" name="af1bdd09c7693f114da612b96c50ba3a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1bdd09c7693f114da612b96c50ba3a9">&#9670;&#160;</a></span>EncontrarCaminhos()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,12 +353,12 @@ Este é o diagrama das funções que utilizam esta função:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>origem</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>origem</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>destino</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>destino</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -306,31 +371,31 @@ Este é o diagrama das funções que utilizam esta função:</div>
 <p>Encontra todos os caminhos entre duas antenas. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo de antenas </td></tr>
-    <tr><td class="paramname">origem</td><td>Índice da antena de origem </td></tr>
-    <tr><td class="paramname">destino</td><td>Índice da antena de destino </td></tr>
-    <tr><td class="paramname">saida</td><td>ficheiro de saída para gravar os resultados </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">origem</td><td><a class="el" href="struct_antena.html" title="Estrutura que representa uma antena na rede.">Antena</a> de origem </td></tr>
+    <tr><td class="paramname">destino</td><td><a class="el" href="struct_antena.html" title="Estrutura que representa uma antena na rede.">Antena</a> de destino </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00158">158</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00228">228</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Grafo de chamadas desta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_ad8db3d8843f0e58bbd54604e757efea1_cgraph.png" border="0" usemap="#afuncoes_8c_ad8db3d8843f0e58bbd54604e757efea1_cgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_af1bdd09c7693f114da612b96c50ba3a9_cgraph.png" border="0" usemap="#afuncoes_8c_af1bdd09c7693f114da612b96c50ba3a9_cgraph" alt=""/></div>
 </div>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_ad8db3d8843f0e58bbd54604e757efea1_icgraph.png" border="0" usemap="#afuncoes_8c_ad8db3d8843f0e58bbd54604e757efea1_icgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_af1bdd09c7693f114da612b96c50ba3a9_icgraph.png" border="0" usemap="#afuncoes_8c_af1bdd09c7693f114da612b96c50ba3a9_icgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a434c2fa83b6b0963a956dbf5a5976862" name="a434c2fa83b6b0963a956dbf5a5976862"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a434c2fa83b6b0963a956dbf5a5976862">&#9670;&#160;</a></span>EncontrarCaminhosRec()</h2>
+<a id="ad9874eb4dbfb03f03ba564fa0f63f62b" name="ad9874eb4dbfb03f03ba564fa0f63f62b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9874eb4dbfb03f03ba564fa0f63f62b">&#9670;&#160;</a></span>EncontrarCaminhosRec()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,27 +408,17 @@ Este é o diagrama das funções que utilizam esta função:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>atual</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>atual</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>destino</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>destino</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>visitados</em></span>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>caminho</em></span>[], </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>pos</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_caminho_node.html">CaminhoNode</a> *</td>          <td class="paramname"><span class="paramname"><em>caminho</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -376,28 +431,26 @@ Este é o diagrama das funções que utilizam esta função:</div>
 <p>Função auxiliar recursiva para encontrar caminhos. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo de antenas </td></tr>
-    <tr><td class="paramname">atual</td><td>Índice da antena atual no caminho </td></tr>
-    <tr><td class="paramname">destino</td><td>Índice da antena de destino </td></tr>
-    <tr><td class="paramname">visitados</td><td>Array de antenas visitadas </td></tr>
-    <tr><td class="paramname">caminho</td><td>Array com os índices do caminho atual </td></tr>
-    <tr><td class="paramname">pos</td><td>Posição atual no caminho </td></tr>
-    <tr><td class="paramname">saida</td><td>Ficheiro de saída para registar os resultados </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">atual</td><td><a class="el" href="struct_antena.html" title="Estrutura que representa uma antena na rede.">Antena</a> atual no caminho </td></tr>
+    <tr><td class="paramname">destino</td><td><a class="el" href="struct_antena.html" title="Estrutura que representa uma antena na rede.">Antena</a> de destino </td></tr>
+    <tr><td class="paramname">caminho</td><td>Caminho acumulado </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00134">134</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00195">195</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Grafo de chamadas desta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_a434c2fa83b6b0963a956dbf5a5976862_cgraph.png" border="0" usemap="#afuncoes_8c_a434c2fa83b6b0963a956dbf5a5976862_cgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_ad9874eb4dbfb03f03ba564fa0f63f62b_cgraph.png" border="0" usemap="#afuncoes_8c_ad9874eb4dbfb03f03ba564fa0f63f62b_cgraph" alt=""/></div>
 </div>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_a434c2fa83b6b0963a956dbf5a5976862_icgraph.png" border="0" usemap="#afuncoes_8c_a434c2fa83b6b0963a956dbf5a5976862_icgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_ad9874eb4dbfb03f03ba564fa0f63f62b_icgraph.png" border="0" usemap="#afuncoes_8c_ad9874eb4dbfb03f03ba564fa0f63f62b_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -424,14 +477,14 @@ Este é o diagrama das funções que utilizam esta função:</div>
 <p>Exporta todos os resultados para um ficheiro. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td><a class="el" href="struct_grafo.html" title="Estrutura principal do grafo de antenas.">Grafo</a> contendo todas as antenas </td></tr>
+    <tr><td class="paramname">grafo</td><td><a class="el" href="struct_grafo.html" title="Estrutura principal que representa o grafo de antenas.">Grafo</a> a ser analisado </td></tr>
     <tr><td class="paramname">nome_ficheiro</td><td>Nome do ficheiro de saída </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00217">217</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00296">296</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Grafo de chamadas desta função:</div>
 <div class="dyncontent">
@@ -441,6 +494,57 @@ Grafo de chamadas desta função:</div>
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
 <div class="center"><img src="funcoes_8c_affa1b9b88b97bde824fbdc7f96863bd3_icgraph.png" border="0" usemap="#afuncoes_8c_affa1b9b88b97bde824fbdc7f96863bd3_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a79524d837e8144f10b2b339a07279d69" name="a79524d837e8144f10b2b339a07279d69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79524d837e8144f10b2b339a07279d69">&#9670;&#160;</a></span>ImprimirCaminho()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ImprimirCaminho </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_caminho_node.html">CaminhoNode</a> *</td>          <td class="paramname"><span class="paramname"><em>caminho</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FILE *</td>          <td class="paramname"><span class="paramname"><em>saida</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Função auxiliar para imprimir um caminho. </p>
+<dl class="params"><dt>Parâmetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">caminho</td><td>Apontador para o início do caminho </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Nota</dt><dd>Função recursiva que imprime do fim para o início </dd></dl>
+
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00179">179</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<div class="dynheader">
+Grafo de chamadas desta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="funcoes_8c_a79524d837e8144f10b2b339a07279d69_cgraph.png" border="0" usemap="#afuncoes_8c_a79524d837e8144f10b2b339a07279d69_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Este é o diagrama das funções que utilizam esta função:</div>
+<div class="dyncontent">
+<div class="center"><img src="funcoes_8c_a79524d837e8144f10b2b339a07279d69_icgraph.png" border="0" usemap="#afuncoes_8c_a79524d837e8144f10b2b339a07279d69_icgraph" alt=""/></div>
 </div>
 
 </div>
@@ -460,16 +564,17 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Libera a memória alocada para o grafo. </p>
+<p>Liberta toda a memória alocada pelo grafo. </p>
+<p>Liberta toda a memória alocada para o grafo.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo a ser liberado </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00264">264</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00349">349</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
@@ -493,16 +598,17 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Limpa os flags de visitadas de todas as antenas. </p>
+<p>Reinicia os marcadores de visita das antenas. </p>
+<p>Limpa os marcadores de visita de todas as antenas.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo a ser modificado </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00071">71</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00376">376</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
@@ -540,19 +646,19 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Mostra interseções entre antenas de frequências diferentes. </p>
+<p>Mostra intersecções entre antenas de frequências diferentes. </p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo de antenas </td></tr>
-    <tr><td class="paramname">freqA</td><td>Primeira frequência para comparação </td></tr>
-    <tr><td class="paramname">freqB</td><td>Segunda frequência para comparação </td></tr>
-    <tr><td class="paramname">saida</td><td>ficheiro de saída para gravar os resultados </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">freqA</td><td>Primeira frequência </td></tr>
+    <tr><td class="paramname">freqB</td><td>Segunda frequência </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00170">170</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00242">242</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
@@ -561,8 +667,8 @@ Este é o diagrama das funções que utilizam esta função:</div>
 
 </div>
 </div>
-<a id="a0bbefff0ab57b1b4eb06263198b326a8" name="a0bbefff0ab57b1b4eb06263198b326a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0bbefff0ab57b1b4eb06263198b326a8">&#9670;&#160;</a></span>ProcuraEmLargura()</h2>
+<a id="ad7acf86e368fdccb889eb76b369fcc6a" name="ad7acf86e368fdccb889eb76b369fcc6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7acf86e368fdccb889eb76b369fcc6a">&#9670;&#160;</a></span>ProcuraEmLargura()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -575,7 +681,7 @@ Este é o diagrama das funções que utilizam esta função:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>inicio</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>inicio</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -585,28 +691,30 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Realiza uma busca em largura a partir de uma antena. </p>
+<p>Função auxiliar para busca em largura (BFS) </p>
+<p>Realiza uma travessia em largura (BFS) no grafo.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo de antenas </td></tr>
-    <tr><td class="paramname">inicio</td><td>Índice da antena inicial para a busca </td></tr>
-    <tr><td class="paramname">saida</td><td>ficheiro de saída para gravar os resultados </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">inicio</td><td>Apontador para a antena inicial </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída para resultados </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
+<dl class="section note"><dt>Nota</dt><dd>Utiliza uma fila implementada com lista ligada </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00096">96</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00134">134</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_a0bbefff0ab57b1b4eb06263198b326a8_icgraph.png" border="0" usemap="#afuncoes_8c_a0bbefff0ab57b1b4eb06263198b326a8_icgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_ad7acf86e368fdccb889eb76b369fcc6a_icgraph.png" border="0" usemap="#afuncoes_8c_ad7acf86e368fdccb889eb76b369fcc6a_icgraph" alt=""/></div>
 </div>
 
 </div>
 </div>
-<a id="a552f9c38cd5de75641d8c9611ba0bff4" name="a552f9c38cd5de75641d8c9611ba0bff4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a552f9c38cd5de75641d8c9611ba0bff4">&#9670;&#160;</a></span>ProcuraEmProfundidade()</h2>
+<a id="aa2360cffbff464adaba570ff530ac627" name="aa2360cffbff464adaba570ff530ac627"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2360cffbff464adaba570ff530ac627">&#9670;&#160;</a></span>ProcuraEmProfundidade()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -619,7 +727,7 @@ Este é o diagrama das funções que utilizam esta função:</div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>inicio</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_antena.html">Antena</a> *</td>          <td class="paramname"><span class="paramname"><em>atual</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -629,27 +737,28 @@ Este é o diagrama das funções que utilizam esta função:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Realiza uma busca em profundidade a partir de uma antena. </p>
+<p>Função auxiliar para busca em profundidade (DFS) </p>
+<p>Realiza uma travessia em profundidade (DFS) no grafo.</p>
 <dl class="params"><dt>Parâmetros</dt><dd>
   <table class="params">
-    <tr><td class="paramname">grafo</td><td>Apontador para o grafo de antenas </td></tr>
-    <tr><td class="paramname">inicio</td><td>Índice da antena inicial para a busca </td></tr>
-    <tr><td class="paramname">saida</td><td>ficheiro de saída para gravar os resultados </td></tr>
+    <tr><td class="paramname">grafo</td><td>Apontador para o grafo </td></tr>
+    <tr><td class="paramname">atual</td><td>Apontador para a antena atual </td></tr>
+    <tr><td class="paramname">saida</td><td>Ficheiro de saída para resultados </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida, false caso contrário </dd></dl>
+<dl class="section return"><dt>Retorna</dt><dd>true se a operação foi bem sucedida </dd></dl>
 
-<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00079">79</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
+<p class="definition">Definido na linha <a class="el" href="funcoes_8c_source.html#l00113">113</a> do ficheiro <a class="el" href="funcoes_8c_source.html">funcoes.c</a>.</p>
 <div class="dynheader">
 Grafo de chamadas desta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_a552f9c38cd5de75641d8c9611ba0bff4_cgraph.png" border="0" usemap="#afuncoes_8c_a552f9c38cd5de75641d8c9611ba0bff4_cgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_aa2360cffbff464adaba570ff530ac627_cgraph.png" border="0" usemap="#afuncoes_8c_aa2360cffbff464adaba570ff530ac627_cgraph" alt=""/></div>
 </div>
 <div class="dynheader">
 Este é o diagrama das funções que utilizam esta função:</div>
 <div class="dyncontent">
-<div class="center"><img src="funcoes_8c_a552f9c38cd5de75641d8c9611ba0bff4_icgraph.png" border="0" usemap="#afuncoes_8c_a552f9c38cd5de75641d8c9611ba0bff4_icgraph" alt=""/></div>
+<div class="center"><img src="funcoes_8c_aa2360cffbff464adaba570ff530ac627_icgraph.png" border="0" usemap="#afuncoes_8c_aa2360cffbff464adaba570ff530ac627_icgraph" alt=""/></div>
 </div>
 
 </div>

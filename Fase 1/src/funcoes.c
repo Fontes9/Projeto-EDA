@@ -14,7 +14,7 @@
  * @param coluna Posição horizontal no grid (coordenada x)
  * @param linha Posição vertical no grid (coordenada y)
  * @param freq Caractere representando a frequência da antena
- * @return Ponteiro para a antena criada ou NULL em caso de falha
+ * @return Apontador para a antena criada ou NULL em caso de falha
  * @warning A memória alocada deve ser liberada com LibertarAntenas()
  */
  antena* CriarAntena(int coluna, int linha, char freq) {
@@ -132,7 +132,7 @@
  
  /**
  * @brief Libera a memória alocada para uma lista de antenas
- * @param lista Ponteiro para o início da lista de antenas
+ * @param lista Apontador para o início da lista de antenas
  */
  void LibertarAntenas(antena* lista) {
      while(lista) {
@@ -144,7 +144,7 @@
  
  /**
  * @brief Libera a memória alocada para uma lista de efeitos nefastos
- * @param lista Ponteiro para o início da lista de efeitos nefastos
+ * @param lista Apontador para o início da lista de efeitos nefastos
  */
  void LibertarEfeitosNefastos(nefasto* lista) {
      while(lista) {
