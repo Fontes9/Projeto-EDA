@@ -14,7 +14,7 @@ digraph "ExportarResultados"
   Node4 [id="Node000004",label="EncontrarCaminhosRec",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#ad9874eb4dbfb03f03ba564fa0f63f62b",tooltip="Função auxiliar recursiva para encontrar caminhos."];
   Node4 -> Node4 [id="edge4_Node000004_Node000004",color="steelblue1",style="solid",tooltip=" "];
   Node4 -> Node5 [id="edge5_Node000004_Node000005",color="steelblue1",style="solid",tooltip=" "];
-  Node5 [id="Node000005",label="ImprimirCaminho",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a79524d837e8144f10b2b339a07279d69",tooltip="Função auxiliar para imprimir um caminho."];
+  Node5 [id="Node000005",label="ImprimirCaminho",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a32b9cc5765b2ac9187b58b619d615257",tooltip="Função auxiliar para imprimir um caminho."];
   Node5 -> Node5 [id="edge6_Node000005_Node000005",color="steelblue1",style="solid",tooltip=" "];
   Node3 -> Node6 [id="edge7_Node000003_Node000006",color="steelblue1",style="solid",tooltip=" "];
   Node6 [id="Node000006",label="LimparVisitados",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$funcoes_8c.html#a5f4ca7899307299d713da05e73505b69",tooltip="Reinicia os marcadores de visita das antenas."];

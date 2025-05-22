@@ -149,4 +149,5 @@ bool LibertarGrafo(Grafo* grafo);
  */
 bool LimparVisitados(Grafo* grafo);
 
+
 #endif

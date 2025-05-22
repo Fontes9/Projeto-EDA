@@ -70,28 +70,28 @@ Grafo CarregarAntenasDoFicheiro(const char* nome_ficheiro) {
         return grafo;
     }
 
-    int linhas, colunas;
-    if (fscanf(ficheiro, "%d %d", &linhas, &colunas) != 2) {
+    int num_linhas, num_colunas;  // Renomeei para evitar conflito com Antena->linha
+    if (fscanf(ficheiro, "%d %d", &num_linhas, &num_colunas) != 2) {
         fclose(ficheiro);
         fprintf(stderr, "Formato de ficheiro inválido\n");
         return grafo;
     }
 
-    while (fgetc(ficheiro) != '\n');
+    while (fgetc(ficheiro) != '\n');  // Consome o restante da primeira linha
 
-    char linha[1024]; // Buffer fixo alternativo
-    for (int y = 0; y < linhas && fgets(linha, sizeof(linha), ficheiro) != NULL; y++) {
-        linha[strcspn(linha, "\n")] = '\0'; // Remove newline
-        for (int x = 0; x < colunas && x < (int)strlen(linha); x++) {
-            if (linha[x] != '.' && linha[x] != ' ') {
-                AdicionarAntena(&grafo, linha[x], x, y);
+    char buffer_linha[1024];  // Buffer para ler cada linha do ficheiro
+    for (int y = 0; y < num_linhas && fgets(buffer_linha, sizeof(buffer_linha), ficheiro) != NULL; y++) {
+        buffer_linha[strcspn(buffer_linha, "\n")] = '\0';  // Remove newline
+        for (int x = 0; x < num_colunas && x < (int)strlen(buffer_linha); x++) {
+            if (buffer_linha[x] != '.' && buffer_linha[x] != ' ') {
+                AdicionarAntena(&grafo, buffer_linha[x], x, y);
             }
         }
     }
     
     fclose(ficheiro);
 
-    // Restante da função permanece igual
+    // Cria as adjacências entre antenas da mesma frequência
     for (Antena* a1 = grafo.antenas; a1 != NULL; a1 = a1->proxima) {
         for (Antena* a2 = grafo.antenas; a2 != NULL; a2 = a2->proxima) {
             if (a1 != a2 && a1->frequencia == a2->frequencia) {
@@ -176,12 +176,20 @@ bool ProcuraEmLargura(Grafo* grafo, Antena* inicio, FILE* saida) {
  * @param saida Ficheiro de saída
  * @note Função recursiva que imprime do fim para o início
  */
-static void ImprimirCaminho(CaminhoNode* caminho, FILE* saida) {
-    if (!caminho) return;
-    ImprimirCaminho(caminho->proxima, saida);
-    fprintf(saida, "%c(%d,%d)", caminho->antena->frequencia, caminho->antena->coluna, caminho->antena->linha);
-    if (caminho->proxima) fprintf(saida, " -> ");
+bool ImprimirCaminho(CaminhoNode* caminho, FILE* saida) {
+    if (!caminho) return false;
+
+    ImprimirCaminho(caminho->proxima, saida);  // chamada recursiva sem guardar retorno
+
+    fprintf(saida, "%c(%d,%d)", caminho->antena->frequencia,
+                                caminho->antena->coluna,
+                                caminho->antena->linha);
+    if (caminho->proxima)
+        fprintf(saida, " -> ");
+
+    return true;
 }
+
 
 /**
  * @brief Função auxiliar recursiva para encontrar caminhos
@@ -189,7 +197,7 @@ static void ImprimirCaminho(CaminhoNode* caminho, FILE* saida) {
  * @param atual Antena atual no caminho
  * @param destino Antena de destino
  * @param caminho Caminho acumulado
- * @param saida Ficheiro de saída
+ * @param saida Ficheiro de saída 
  * @return true se a operação foi bem sucedida
  */
 bool EncontrarCaminhosRec(Grafo* grafo, Antena* atual, Antena* destino, CaminhoNode* caminho, FILE* saida) {
