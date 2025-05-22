@@ -27,7 +27,7 @@ typedef struct Antena {
     char frequencia;            ///< Frequência de operação da antena (carácter único)
     int coluna;                 ///< Posição horizontal na matriz (coordenada X)
     int linha;                  ///< Posição vertical na matriz (coordenada Y)
-    Adjacencia* conexoes;       ///< Lista de ligações a outras antenas
+    Adjacencia* ligacoes;       ///< Lista de ligações a outras antenas
     bool visitada;              ///< Indicador se a antena foi visitada em algoritmos de travessia
     struct Antena* proxima;     ///< Apontador para a próxima antena na lista do grafo
 } Antena;

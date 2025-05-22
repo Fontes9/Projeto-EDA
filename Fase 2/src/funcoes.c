@@ -19,8 +19,8 @@ bool AdicionarAdjacencia(Antena* origem, Antena* destino) {
     if (!nova) return false;
     
     nova->destino = destino;
-    nova->proxima = origem->conexoes;
-    origem->conexoes = nova;
+    nova->proxima = origem->ligacoes;
+    origem->ligacoes = nova;
     return true;
 }
 
@@ -42,7 +42,7 @@ bool AdicionarAntena(Grafo* grafo, char freq, int col, int lin) {
     nova->frequencia = freq;
     nova->coluna = col;
     nova->linha = lin;
-    nova->conexoes = NULL;
+    nova->ligacoes = NULL;
     nova->visitada = false;
     nova->proxima = grafo->antenas;
     grafo->antenas = nova;
@@ -117,7 +117,7 @@ bool ProcuraEmProfundidade(Grafo* grafo, Antena* atual, FILE* saida) {
     atual->visitada = true;
     fprintf(saida, "Antena %c @ (%d,%d)\n", atual->frequencia, atual->coluna, atual->linha);
 
-    for (Adjacencia* adj = atual->conexoes; adj != NULL; adj = adj->proxima) {
+    for (Adjacencia* adj = atual->ligacoes; adj != NULL; adj = adj->proxima) {
         ProcuraEmProfundidade(grafo, adj->destino, saida);
     }
     return true;
@@ -153,7 +153,7 @@ bool ProcuraEmLargura(Grafo* grafo, Antena* inicio, FILE* saida) {
         
         fprintf(saida, "Antena %c @ (%d,%d)\n", atual->frequencia, atual->coluna, atual->linha);
         
-        for (Adjacencia* adj = atual->conexoes; adj != NULL; adj = adj->proxima) {
+        for (Adjacencia* adj = atual->ligacoes; adj != NULL; adj = adj->proxima) {
             if (!adj->destino->visitada) {
                 adj->destino->visitada = true;
                 FilaNode* novo_node = malloc(sizeof(FilaNode));
@@ -213,7 +213,7 @@ bool EncontrarCaminhosRec(Grafo* grafo, Antena* atual, Antena* destino, CaminhoN
         ImprimirCaminho(caminho, saida);
         fprintf(saida, "\n");
     } else {
-        for (Adjacencia* adj = atual->conexoes; adj != NULL; adj = adj->proxima) {
+        for (Adjacencia* adj = atual->ligacoes; adj != NULL; adj = adj->proxima) {
             if (!adj->destino->visitada) {
                 EncontrarCaminhosRec(grafo, adj->destino, destino, caminho, saida);
             }
@@ -359,7 +359,7 @@ bool LibertarGrafo(Grafo* grafo) {
     
     Antena* atual = grafo->antenas;
     while (atual) {
-        Adjacencia* adj = atual->conexoes;
+        Adjacencia* adj = atual->ligacoes;
         while (adj) {
             Adjacencia* temp = adj;
             adj = adj->proxima;
